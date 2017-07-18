@@ -10,25 +10,35 @@
 %%
 %% Additions of multiple classes: Denis ¦togl, IAR-IPR Prof. Hein, 2017
 %% denis.stogl@kit.edu
-%% Ideas from: ....
+%% Ideas taken from: SDQ-Version by Erik Burger (v1.3, Dezember 2016)
 
 
-\NeedsTeXFormat{LaTeX2e}										% We do need LaTeX2e
+\NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{IPRthesis}
 \newif\ifIPRthesis@german
 \newif\ifIPRthesis@seminar
 \newif\ifIPRthesis@bachelor
 \newif\ifIPRthesis@master
+\newif\ifIPRthesis@thesis
+\newif\ifIPRthesis@techreport
 
 \DeclareOption{german}{\IPRthesis@germantrue}
 \DeclareOption{ngerman}{\IPRthesis@germantrue}
 
 \DeclareOption{seminar}{\IPRthesis@seminartrue}
-\DeclareOption{bachelor}{\IPRthesis@bachelortrue}
-\DeclareOption{master}{\IPRthesis@mastertrue}
+\DeclareOption{bachelor}{\IPRthesis@bachelortrue \IPRthesis@thesistrue}
+\DeclareOption{master}{\IPRthesis@mastertrue \IPRthesis@thesistrue}
+\DeclareOption{techreport}{\IPRthesis@techreporttrue}
 
-% \ExecuteOptions{master}
 \ProcessOptions\relax
+
+\newcommand{\thesistype}{}
+\ifIPRthesis@bachelor
+  \renewcommand{\thesistype}{\iflanguage{ngerman}{Bachelorarbeit}{Bachelor Thesis}}
+\fi
+\ifIPRthesis@master
+  \renewcommand{\thesistype}{\iflanguage{ngerman}{Masterarbeit}{Master Thesis}}
+\fi
 
 %% ----------------------------------
 %% |          Paper class           |
@@ -45,8 +55,12 @@
 \fi
 
 \ifIPRthesis@seminar
-  \LoadClass[11pt,a4paper,titlepage]{scrartcl}	% Class based on scrbook
-\else
+  \LoadClass[11pt,a4paper,titlepage]{scrartcl}
+\fi
+\ifIPRthesis@techreport
+  \LoadClass[12pt,a4paper,titlepage]{scrartcl}
+\fi
+\ifIPRthesis@thesis
   \LoadClass[12pt,twoside,headsepline,a4paper,titlepage,DIV=15,BCOR=20mm]{scrbook}
 \fi
 
@@ -60,7 +74,12 @@
 \widowpenalty=10000 %prvent widows
 
 \ifIPRthesis@seminar
-  \lohead{\headmark}    %% Top left on odd pages
+  \lohead{\headmark}
+  \chead{}
+  \pagestyle{scrheadings}
+\fi
+\ifIPRthesis@techreport
+  \lohead{\headmark}
   \chead{}
   \pagestyle{scrheadings}
 \fi
@@ -104,9 +123,9 @@
 %% -------------------------------
 \ifIPRthesis@seminar
   \newcommand{\chapter}{\section}
-%   \renewcommand{\section}{\subsection}
-%   \renewcommand{\subsection}{\subsubsection}
-%   \renewcommand{\subsubsection}{\subsubsubsection}
+\fi
+\ifIPRthesis@techreport
+  \newcommand{\chapter}{\section}
 \fi
 %% --- End of captions style ---
 
@@ -183,14 +202,25 @@
 	\textbf{www.kit.edu}
   }
 \end{textblock}
+
+\newcommand{\titlepreamble}{}
 \ifIPRthesis@seminar
+  \renewcommand{\titlepreamble}{Seminar \thethesistype}
+\fi
+\ifIPRthesis@techreport
+  \renewcommand{\titlepreamble}{\thethesistype}
+\fi
+
+\ifthenelse{\equal{\titlepreamble}{}}
+{}
+{
   \begin{center}
     \vspace*{1cm}
     \Huge{
-      {\changefont{phv}{m}{n}\selectfont Seminar \thethesistype }
+      {\changefont{phv}{m}{n}\selectfont \titlepreamble }
     }
   \end{center}
-\fi
+}
 }
 
 %
@@ -231,7 +261,6 @@
 
 %% Thesis type handling
 \newcommand{\thethesistype}{}
-\newcommand{\thesistype}{}
 \ifIPRthesis@seminar
   \newcommand{\studyprogram}[1]{
       \subtitle{\vspace*{1cm}  \Large{\iflanguage{ngerman}{Seminararbeit von}{Seminar work of}}
@@ -239,12 +268,12 @@
       \renewcommand{\thethesistype}{#1}
   }
 \fi
-\ifIPRthesis@bachelor
-  \newcommand{\studyprogram}[1]{\subtitle{\vspace*{1.5cm} \iflanguage{ngerman}{Bachelorarbeit\\ im Studiengang #1\\von}{Bachelor Thesis\\ in #1\\of}}
+\ifIPRthesis@thesis
+  \newcommand{\studyprogram}[1]{\subtitle{\vspace*{1.5cm} \iflanguage{ngerman}{\thesistype\\ im Studiengang #1\\von}{\thesistype\\ in #1\\of}}
   \renewcommand{\thethesistype}{#1}}
 \fi
-\ifIPRthesis@master
-  \newcommand{\studyprogram}[1]{\subtitle{\vspace*{1.5cm} \iflanguage{ngerman}{Masterarbeit\\ im Studiengang #1\\von}{Master Thesis\\ in #1\\of}}
+\ifIPRthesis@techreport
+  \newcommand{\studyprogram}[1]{\subtitle{\vspace*{1.5cm} \iflanguage{ngerman}{geschrieben von}{written by}}
   \renewcommand{\thethesistype}{#1}}
 \fi
 
@@ -256,33 +285,40 @@
     \else
       \large
     \fi
-      \iflanguage{ngerman}{An der Fakult\"at f\"ur Informatik}{At the Department of Informatics}
-      \\
-      \theinstitute
+    \iflanguage{ngerman}{An der Fakult\"at f\"ur Informatik}{At the Department of Informatics}
+    \\
+    \theinstitute
 
-      \vspace*{1cm}
+    \vspace*{1cm}
 
-      \begin{tabular}{l c l}
-	\ifIPRthesis@seminar
+    \begin{tabular}{l c l}
+      \ifIPRthesis@seminar
+	\iflanguage{ngerman}{Betreuender Mitarbeiter}{Advisor}: & \hfill & \theadvisorone \\
+      \fi
+      \ifIPRthesis@thesis
+	\ifthenelse{\equal{\thereviewertwo}{}}{
+	  \iflanguage{ngerman}{Gutachter}{Reviewer}: & \hfill  & \thereviewerone \\
+	}{
+	  \iflanguage{ngerman}{Erstgutachter}{First reviewer}: & \hfill & \thereviewerone \\
+	  { }\iflanguage{ngerman}{Zweitgutachter}{Second reviewer}: & \hfill & \thereviewertwo \\
+	}
+	\ifthenelse{\equal{\theadvisortwo}{}}{
 	  \iflanguage{ngerman}{Betreuender Mitarbeiter}{Advisor}: & \hfill & \theadvisorone \\
-	\else
-	  \ifthenelse{\equal{\thereviewertwo}{}}{
-	    \iflanguage{ngerman}{Gutachter}{Reviewer}: & \hfill  & \thereviewerone \\
-	  }{
-	    \iflanguage{ngerman}{Erstgutachter}{First reviewer}: & \hfill & \thereviewerone \\
-	    { }\iflanguage{ngerman}{Zweitgutachter}{Second reviewer}: & \hfill & \thereviewertwo \\
-	  }
-	  \ifthenelse{\equal{\theadvisortwo}{}}{
-	    \iflanguage{ngerman}{Betreuender Mitarbeiter}{Advisor}: & \hfill & \theadvisorone \\
-	  }{
-	    \iflanguage{ngerman}{Erster betreuender Mitarbeiter}{First advisor}: & \hfill & \theadvisorone \\
-	    { }\iflanguage{ngerman}{Zweiter betreuender Mitarbeiter}{Second advisor}: & \hfill & \theadvisortwo \\
-	  }
-	\fi
-      \end{tabular}
+	}{
+	  \iflanguage{ngerman}{Erster betreuender Mitarbeiter}{First advisor}: & \hfill & \theadvisorone \\
+	  { }\iflanguage{ngerman}{Zweiter betreuender Mitarbeiter}{Second advisor}: & \hfill & \theadvisortwo \\
+	}
+      \fi
+    \end{tabular}
 
-      \vspace{4cm}
-      \normalsize{\theeditstart{} -- \theeditend}
+    \vspace{4cm}
+    \normalsize{
+      \ifIPRthesis@techreport
+	\today
+      \else
+	\theeditstart{} -- \theeditend
+      \fi
+      }
     }
   }
 }
@@ -292,39 +328,48 @@
 %% | Abstract/Acknowledgements |
 %% -----------------------------
 \newcommand{\includeabstract}{}
-\ifIPRthesis@seminar
-\else
 
-\newcommand{\abstract}[1][\abstractname]{\chapter*{#1}}
-\newcommand{\Abstract}[1][\abstractname]{\chapter*{#1}\addcontentsline{toc}{chapter}{#1}}
+\ifIPRthesis@techreport
+  \newcommand{\Abstract}[1][\iflanguage{ngerman}{\abstractname}{Executive Summary}]{\chapter*{#1}}
+  \renewcommand{\includeabstract}{
+  \iflanguage{ngerman}{
+    \include{Content/0-Abstract_DE}
+  }{
+    \include{Content/0-Abstract_EN}
+  }
+  }
+\fi
 
-% \def\ackname{Acknowledgments}
-% \def\abstractname{Abstract}
-% \def\switcht@deutsch{\svlanginfo
-% 	\def\ackname{Danksagung}
-% 	\def\abstractname{Kurzfassung}
-% }
-% \def\switcht@english{\svlanginfo
-% 	\def\ackname{Acknowledgements}
-% 	\def\abstractname{Abstract}
-% }
+\ifIPRthesis@thesis
+  \newcommand{\abstract}[1][\abstractname]{\chapter*{#1}}
+  \newcommand{\Abstract}[1][\abstractname]{\chapter*{#1}\addcontentsline{toc}{chapter}{#1}}
 
-\renewcommand{\includeabstract}{
-\iflanguage{ngerman}{
-% include German and English abstracts
-\include{Content/0-Abstract_DE}
-\begin{otherlanguage}{english}
-\include{Content/0-Abstract_EN}
-\end{otherlanguage}
-}{
-% include English and German abstracts
-\include{Content/0-Abstract_EN}
-\begin{otherlanguage}{ngerman}
-\include{Content/0-Abstract_DE}
-\end{otherlanguage}
-}
-}
+  % \def\ackname{Acknowledgments}
+  % \def\abstractname{Abstract}
+  % \def\switcht@deutsch{\svlanginfo
+  % 	\def\ackname{Danksagung}
+  % 	\def\abstractname{Kurzfassung}
+  % }
+  % \def\switcht@english{\svlanginfo
+  % 	\def\ackname{Acknowledgements}
+  % 	\def\abstractname{Abstract}
+  % }
 
+  \renewcommand{\includeabstract}{
+  \iflanguage{ngerman}{
+  % include German and English abstracts
+  \include{Content/0-Abstract_DE}
+  \begin{otherlanguage}{english}
+  \include{Content/0-Abstract_EN}
+  \end{otherlanguage}
+  }{
+  % include English and German abstracts
+  \include{Content/0-Abstract_EN}
+  \begin{otherlanguage}{ngerman}
+  \include{Content/0-Abstract_DE}
+  \end{otherlanguage}
+  }
+  }
 \fi
 
 %% ------------------------------------------
@@ -332,25 +377,31 @@
 %% ------------------------------------------
 \newcommand{\inculdetableofcontents}{}
 \ifIPRthesis@seminar
-\renewcommand{\inculdetableofcontents}{
-  \tableofcontents
-  }
-\else
-\renewcommand{\inculdetableofcontents}{
-  \tableofcontents
-  \listoffigures \addcontentsline{toc}{chapter}{\listfigurename}
-  \listoftables \addcontentsline{toc}{chapter}{\listtablename}
-  \pagebreak
-  }
+  \renewcommand{\inculdetableofcontents}{
+    \tableofcontents
+    }
+\fi
+\ifIPRthesis@techreport
+  \renewcommand{\inculdetableofcontents}{
+    \tableofcontents
+    }
+\fi
+\ifIPRthesis@thesis
+  \renewcommand{\inculdetableofcontents}{
+    \tableofcontents
+    \listoffigures \addcontentsline{toc}{chapter}{\listfigurename}
+    \listoftables \addcontentsline{toc}{chapter}{\listtablename}
+    \pagebreak
+    }
 \fi
 
 %% ------------
 %% | Appendix |
 %% ------------
-\ifIPRthesis@seminar
-  \newcommand{\Appendix}[1][\appendixname]{\chapter*{#1}\addcontentsline{toc}{section}{#1} \appendix \setcounter{figure}{0}}
-\else
+\ifIPRthesis@thesis
   \newcommand{\Appendix}[1][\appendixname]{\chapter*{#1}\addcontentsline{toc}{chapter}{#1} \appendix \setcounter{figure}{0}}
+\else
+  \newcommand{\Appendix}[1][\appendixname]{\chapter*{#1}\addcontentsline{toc}{section}{#1} \appendix \setcounter{figure}{0}}
 \fi
 
 % \appendix
@@ -364,10 +415,10 @@
 %% -----------------------------¨
 
 
-\ifIPRthesis@seminar
-  \newcommand{\Bibliography}[1]{\addcontentsline{toc}{section}{\bibname} \bibliography{#1}}
-\else
+\ifIPRthesis@thesis
   \newcommand{\Bibliography}[1]{\addcontentsline{toc}{chapter}{\bibname} \bibliography{#1}}
+\else
+  \newcommand{\Bibliography}[1]{\addcontentsline{toc}{section}{\bibname} \bibliography{#1}}
 \fi
 
 \iflanguage{ngerman}
