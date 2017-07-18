@@ -19,6 +19,7 @@
 \newif\ifIPRthesis@seminar
 \newif\ifIPRthesis@bachelor
 \newif\ifIPRthesis@master
+\newif\ifIPRthesis@phd
 \newif\ifIPRthesis@thesis
 \newif\ifIPRthesis@techreport
 
@@ -28,6 +29,7 @@
 \DeclareOption{seminar}{\IPRthesis@seminartrue}
 \DeclareOption{bachelor}{\IPRthesis@bachelortrue \IPRthesis@thesistrue}
 \DeclareOption{master}{\IPRthesis@mastertrue \IPRthesis@thesistrue}
+\DeclareOption{phd}{\IPRthesis@phdtrue \IPRthesis@thesistrue}
 \DeclareOption{techreport}{\IPRthesis@techreporttrue}
 
 \ProcessOptions\relax
@@ -38,6 +40,9 @@
 \fi
 \ifIPRthesis@master
   \renewcommand{\thesistype}{\iflanguage{ngerman}{Masterarbeit}{Master Thesis}}
+\fi
+\ifIPRthesis@phd
+  \renewcommand{\thesistype}{\iflanguage{ngerman}{Doktorarbeit}{PhD Thesis}}
 \fi
 
 %% ----------------------------------
@@ -302,12 +307,15 @@
 	  \iflanguage{ngerman}{Erstgutachter}{First reviewer}: & \hfill & \thereviewerone \\
 	  { }\iflanguage{ngerman}{Zweitgutachter}{Second reviewer}: & \hfill & \thereviewertwo \\
 	}
-	\ifthenelse{\equal{\theadvisortwo}{}}{
-	  \iflanguage{ngerman}{Betreuender Mitarbeiter}{Advisor}: & \hfill & \theadvisorone \\
-	}{
-	  \iflanguage{ngerman}{Erster betreuender Mitarbeiter}{First advisor}: & \hfill & \theadvisorone \\
-	  { }\iflanguage{ngerman}{Zweiter betreuender Mitarbeiter}{Second advisor}: & \hfill & \theadvisortwo \\
-	}
+	\ifIPRthesis@phd
+	\else
+	  \ifthenelse{\equal{\theadvisortwo}{}}{
+	    \iflanguage{ngerman}{Betreuender Mitarbeiter}{Advisor}: & \hfill & \theadvisorone \\
+	  }{
+	    \iflanguage{ngerman}{Erster betreuender Mitarbeiter}{First advisor}: & \hfill & \theadvisorone \\
+	    { }\iflanguage{ngerman}{Zweiter betreuender Mitarbeiter}{Second advisor}: & \hfill & \theadvisortwo \\
+	  }
+	\fi
       \fi
     \end{tabular}
 
@@ -323,6 +331,11 @@
   }
 }
 
+\newcommand{\includedeclaration}{}
+\ifIPRthesis@techreport
+\else
+  \renewcommand{\includedeclaration}{\input{Content/0-Declaration.tex}}
+\fi
 
 %% -----------------------------
 %% | Abstract/Acknowledgements |
