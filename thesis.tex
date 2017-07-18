@@ -1,0 +1,135 @@
+%% Choose language: english or german
+%% Choose Thesis type: seminar, bachelor, master
+\documentclass[german,master]{IPRthesis}
+
+%% ---------------------------------
+%% | Information about the thesis  |
+%% ---------------------------------
+\title{Title of the Thesis\\
+Second Title Line}
+
+\author{My Name}
+
+\keywords{Keywords, of, my, Thesis}
+
+%% Study program or for seminars name of a seminar
+\studyprogram{Intelligente Industrieroboter}
+
+\reviewerone{Prof. Dr.-Ing. habil. Bj\"orn Hein}
+\reviewertwo{Prof. B}
+%
+% %% The advisors are PhDs or Postdocs
+\advisorone{M.Sc. C}
+% %% The second advisor can be omitted
+\advisortwo{M.Sc. D}
+%
+% %% Please enter the start end end time of your thesis
+\editingtime{xx. Month 20XX}{xx. Month 20XX}
+
+\settitle
+
+%% --------------------------------
+%% | Settings for word separation |
+%% --------------------------------
+% Help for separation:
+% In german package the following hints are additionally available:
+% "- = Additional separation
+% "| = Suppress ligation and possible separation (e.g. Schaf"|fell)
+% "~ = Hyphenation without separation (e.g. bergauf und "~ab)
+% "= = Hyphenation with separation before and after
+% "" = Separation without a hyphenation (e.g. und/""oder)
+
+% Describe separation hints here:
+\hyphenation{
+% Pro-to-koll-in-stan-zen
+% Ma-na-ge-ment  Netz-werk-ele-men-ten
+% Netz-werk Netz-werk-re-ser-vie-rung
+% Netz-werk-adap-ter Fein-ju-stier-ung
+% Da-ten-strom-spe-zi-fi-ka-tion Pa-ket-rumpf
+% Kon-troll-in-stanz
+}
+
+
+%% ------------------------
+%% |    Including files   |
+%% ------------------------
+% Only files listed here will be included!
+% Userful command for partially translating the document (for bug-fixing e.g.)
+% \includeonly{%
+% Content/0-Declaration,
+% Content/0-Abstract_EN,
+% Content/0-Abstract_DE,
+% Content/1-Introduction,
+% Content/2-State-of-the-art,
+% Content/3-Methods,
+% Content/4-Concept,
+% Content/5-Implementation,
+% Content/6-Results,
+% Content/7-Discussion,
+% Content/8-Conclusion,
+% Content/11-Appendix,
+% }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Here, main documents begins %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%% Set PDF metadata
+\setpdf
+
+%% Set the title
+\maketitle
+
+% \let\theauthor\@author6
+\input{Content/0-Declaration.tex}
+
+\setcounter{page}{1}
+\pagenumbering{roman}
+
+%% ----------------
+%% |   Abstract   |
+%% ----------------
+%% An abstract both in English
+%% and German is mandatory.
+%%
+%% For theses written in German, a German abstract is sufficient.
+%%
+%% The text is included from the following files:
+%% - Content/0-Abstract_EN
+%% - Content/0-Abstract_DE
+\includeabstract
+
+%% ------------------------
+%% |   Table of Contents  |
+%% ------------------------
+\inculdetableofcontents
+
+%% -----------------
+%% |   Main part   |
+%% -----------------
+
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\include{Content/1-Introduction}
+\include{Content/2-State-of-the-art}
+\include{Content/3-Methods}
+\include{Content/4-Concept}
+\include{Content/5-Implementation}
+\include{Content/6-Results}
+\include{Content/7-Discussion}
+\include{Content/8-Conclusion}
+
+%% --------------------
+%% |   Bibliography   |
+%% --------------------
+\Bibliography{Bibliography/thesis}
+
+%% ----------------
+%% |   Appendix   |
+%% ----------------
+% \cleardoublepage
+\include{Content/11-Appendix}
+
+\end{document}

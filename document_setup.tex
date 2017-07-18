@@ -1,0 +1,122 @@
+%% --------------
+%% | Typography |
+%% --------------
+
+% T1 font encoding
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+
+% serif type: Linux Libertine
+% \RequirePackage{libertine}
+% Linux Libertine in math mode
+% \RequirePackage[libertine]{newtxmath}
+
+%% ---------------------------
+%% | References in PDF       |
+%% ---------------------------
+\usepackage[hyphens]{url}
+\usepackage[breaklinks,colorlinks=true,pdftex,pageanchor=false]{hyperref}
+
+%% --------------
+%% | Packages   |
+%% --------------
+\usepackage[nooneline,bf]{caption} % Figure descriptions from left margin
+\usepackage{times}
+
+%% --------------
+%% | Graphics, Figures, Tables   |
+%% --------------
+\usepackage[dvips,pdftex]{graphicx}
+\usepackage{epic}
+\usepackage{eepic}
+\usepackage{epsfig}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{float} % damit Tabellen und Grafiken sich selbst ausrichten dürfen und nicht zwangshaft an einer Stelle stehen. verhindern kann man das mit [H]
+\usepackage{subcaption}
+% \usepackage[table]{xcolor}
+% \usepackage{color}
+\usepackage{transparent}
+
+\usepackage{multicol}
+\usepackage{multirow}
+
+%% --------------
+%% | Listings    |
+%% --------------
+\usepackage{algorithm}		  % Code-Listings
+\usepackage{algorithmic}	  % Code-Listings
+% see http://www.ctan.org/tex-archive/macros/latex/contrib/algorithm2e/algorithm2e.pdf
+% for more sophisticated algorithm listings
+
+%% --------------
+%% | Margins    |
+%% --------------
+\usepackage{vmargin}          % Adjust margins in a simple way
+\usepackage[absolute,overlay]{textpos}
+
+%% --------------
+%% | Math       |
+%% --------------
+\usepackage{grffile}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{siunitx} % für alle SI-Einheiten (siehe Siunitx.pdf) \SI[per-mode=symbol]{56}{\gram\per\square\meter}
+
+\usepackage{textcomp}
+\usepackage{enumerate}
+
+%% --------------------
+%% | Dummy Text       |
+%% --------------------
+\usepackage{blindtext}
+
+%% --- End of Packages ---
+
+
+%% -------------------------------
+%% |        Declarations         |
+%% -------------------------------
+\pgfplotsset{compat=newest}
+\pgfplotsset{plot coordinates/math parser=false}
+%% the following commands are needed for some matlab2tikz features
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{arrows.meta}
+\usepgfplotslibrary{patchplots}
+
+\graphicspath{{Figures/}{../jpeg/png/svg/gif/}}
+
+\newcommand\setpdf{\hypersetup{
+%     bookmarks=true,         % show bookmarks bar?
+%     unicode=true,          % non-Latin characters in Acrobat's bookmarks
+%     pdftoolbar=true,        % show Acrobat's toolbar?
+%     pdfmenubar=true,        % show Acrobat's menu?
+%     hyperindex=true,
+    plainpages=false,
+%     pdfpagelabels=true,
+%     pdffitwindow=false,     % window fit to page when opened
+%     pdfstartview={FitH},    % fits the width of the page to the window
+%     pdftitle={\thethesistype},    % title
+%     pdfauthor={\@author},     % author
+%     pdfsubject={\@title},   % subject of the document
+%     pdfcreator={\@author},   % creator of the document
+%     pdfproducer={\@author}, % producer of the document
+%     pdfkeywords={\keywords}, % list of keywords
+%     pagebackref =true,
+%     pdfnewwindow=true,      % links in new window
+%     colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links (change box color with linkbordercolor)
+    citecolor=black,        % color of links to bibliography
+    filecolor=black,      % color of file links
+    urlcolor=black           % color of external links
+%     pdfborder={0 0 0},%
+%     %linkcolor=kit-blue100,%
+%     %citecolor=kit-green100,%
+%     %urlcolor=kit-red100
+  }
+  \let\theauthor\@author
+}
+
+%% --- End of Declarations ---
