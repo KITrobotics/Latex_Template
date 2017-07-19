@@ -111,7 +111,11 @@
 %% -------------------------------
 %% |      Globale Settings       |
 %% -------------------------------
-\setcounter{secnumdepth}{3} % Numbering also for \subsubsections
+\ifIPRthesis@techreport
+  \setcounter{secnumdepth}{0} % Numbering also for \subsubsections
+\else
+  \setcounter{secnumdepth}{3} % Numbering also for \subsubsections
+\fi
 \setcounter{tocdepth}{3}    % Register \subsubsections in content directory
 
 \setpapersize{A4}
@@ -228,10 +232,15 @@
 }
 }
 
-%
-\setkomafont{title}{\Huge\changefont{phv}{m}{n}}
-\setkomafont{subtitle}{\large\changefont{phv}{m}{n}}
-\setkomafont{author}{\huge\changefont{phv}{m}{n}}
+\ifIPRthesis@techreport
+  \setkomafont{title}{\Huge\changefont{phv}{m}{n}}
+  \setkomafont{subtitle}{\large\changefont{phv}{m}{n}}
+  \setkomafont{author}{\Large\changefont{phv}{m}{n}}
+\else
+  \setkomafont{title}{\Huge\changefont{phv}{m}{n}}
+  \setkomafont{subtitle}{\large\changefont{phv}{m}{n}}
+  \setkomafont{author}{\huge\changefont{phv}{m}{n}}
+\fi
 
 \uppertitleback{Karlsruher Institut für Technologie\\ Fakultät für Informatik\\ Postfach 6980\\ 76128 Karlsruhe}
 
@@ -333,6 +342,8 @@
 
 \newcommand{\includedeclaration}{}
 \ifIPRthesis@techreport
+  \thispagestyle{empty}
+  \pagebreak
 \else
   \renewcommand{\includedeclaration}{\input{Content/0-Declaration.tex}}
 \fi
@@ -392,11 +403,13 @@
 \ifIPRthesis@seminar
   \renewcommand{\inculdetableofcontents}{
     \tableofcontents
+    \pagebreak
     }
 \fi
 \ifIPRthesis@techreport
   \renewcommand{\inculdetableofcontents}{
     \tableofcontents
+    \pagebreak
     }
 \fi
 \ifIPRthesis@thesis
