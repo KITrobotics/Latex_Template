@@ -17,6 +17,7 @@
 \ProvidesClass{IPRthesis}
 \newif\ifIPRthesis@german
 \newif\ifIPRthesis@seminar
+\newif\ifIPRthesis@studien
 \newif\ifIPRthesis@bachelor
 \newif\ifIPRthesis@master
 \newif\ifIPRthesis@phd
@@ -27,6 +28,7 @@
 \DeclareOption{ngerman}{\IPRthesis@germantrue}
 
 \DeclareOption{seminar}{\IPRthesis@seminartrue}
+\DeclareOption{studien}{\IPRthesis@studientrue \IPRthesis@thesistrue}
 \DeclareOption{bachelor}{\IPRthesis@bachelortrue \IPRthesis@thesistrue}
 \DeclareOption{master}{\IPRthesis@mastertrue \IPRthesis@thesistrue}
 \DeclareOption{phd}{\IPRthesis@phdtrue \IPRthesis@thesistrue}
@@ -35,6 +37,9 @@
 \ProcessOptions\relax
 
 \newcommand{\thesistype}{}
+\ifIPRthesis@studien
+  \renewcommand{\thesistype}{\iflanguage{ngerman}{Studienarbeit}{Student Research Project}}
+\fi
 \ifIPRthesis@bachelor
   \renewcommand{\thesistype}{\iflanguage{ngerman}{Bachelorarbeit}{Bachelor Thesis}}
 \fi
@@ -147,12 +152,12 @@
 \RequirePackage[toc,title,header]{appendix}
 \noappendicestocpagenum
 
- \renewcommand\appendix{\par 
-   \setcounter{section}{0}% 
-   \setcounter{subsection}{0}% 
+ \renewcommand\appendix{\par
+   \setcounter{section}{0}%
+   \setcounter{subsection}{0}%
    \setcounter{figure}{0}%
-   \renewcommand\thesection{\Alph{section}}% 
-   \renewcommand\thefigure{\Alph{section}.\arabic{figure}} 
+   \renewcommand\thesection{\Alph{section}}%
+   \renewcommand\thefigure{\Alph{section}.\arabic{figure}}
    \renewcommand\thetable{\Alph{section}.\arabic{table}}}
 %% --- End of appenix numbering style ---
 
