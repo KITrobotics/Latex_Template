@@ -275,8 +275,12 @@
 \date{}
 }
 
+\newcommand{\thetitleotherlanguage}{}
+\newcommand{\titleotherlanguage}[1]{\renewcommand{\thetitleotherlanguage}{#1}}
 \newcommand{\thekeywords}{}
 \newcommand{\keywords}[1]{\renewcommand{\thekeywords}{#1}}
+\newcommand{\thekeywordsotherlanguge}{}
+\newcommand{\keywordsotherlanguge}[1]{\renewcommand{\thekeywordsotherlanguge}{#1}}
 
 %% Thesis type handling
 \newcommand{\thethesistype}{}
@@ -353,13 +357,14 @@
   \renewcommand{\includedeclaration}{\input{Content/0-Declaration.tex}}
 \fi
 
-%% -----------------------------
-%% | Abstract/Acknowledgements |
-%% -----------------------------
+%% ------------
+%% | Abstract |
+%% ------------
 \newcommand{\includeabstract}{}
 
 \ifIPRthesis@techreport
-  \newcommand{\Abstract}[1][\iflanguage{ngerman}{\abstractname}{Executive Summary}]{\chapter*{#1}}
+  \newcommand{\Abstract}[1]{\chapter*{\iflanguage{ngerman}{\abstractname}{Executive Summary}} #1 \vspace{0.7cm}
+    \textbf{\iflanguage{ngerman}{Stichwörter}{Keywords}:} \emph{\thekeywords}}
   \renewcommand{\includeabstract}{
   \iflanguage{ngerman}{
     \include{Content/0-Abstract_DE}
@@ -370,8 +375,60 @@
 \fi
 
 \ifIPRthesis@thesis
-  \newcommand{\abstract}[1][\abstractname]{\chapter*{#1}}
-  \newcommand{\Abstract}[1][\abstractname]{\chapter*{#1}\addcontentsline{toc}{chapter}{#1}}
+
+  \newcommand{\theAbstract}{}
+  \newcommand{\abstract}{}
+  \newcommand{\Abstract}{}
+
+  \renewcommand{\includeabstract}{
+  \iflanguage{ngerman}{
+    % include German and English abstracts
+    \renewcommand{\abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname} ##1}}
+    \renewcommand{\Abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname}\addcontentsline{toc}{chapter}{\abstractname} ##1}}
+    \include{Content/0-Abstract_DE}
+    \theAbstract
+    \vspace{0.7cm}
+    \textbf{Stichwörter:} \emph{\thekeywords}
+
+    \begin{otherlanguage}{english}
+      \renewcommand{\abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname} ##1}}
+      \renewcommand{\Abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname}\addcontentsline{toc}{chapter}{\abstractname} {\Large\changefont{phv}{b}{n}\centering{\thetitleotherlanguage}\\\vspace{0.7cm}} ##1}}
+      \include{Content/0-Abstract_EN}
+      \theAbstract
+      \vspace{0.7cm}
+      \textbf{Keywords:} \emph{\thekeywordsotherlanguge}
+    \end{otherlanguage}
+  }{
+    % include English and German abstracts
+    \renewcommand{\abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname} ##1}}
+    \renewcommand{\Abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname}\addcontentsline{toc}{chapter}{\abstractname} ##1}}
+    \include{Content/0-Abstract_EN}
+      \theAbstract
+      \vspace{0.7cm}
+      \textbf{Keywords:} \emph{\thekeywords}
+    \begin{otherlanguage}{ngerman}
+      \renewcommand{\abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname} ##1}}
+      \renewcommand{\Abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname}\addcontentsline{toc}{chapter}{\abstractname} {\Large\changefont{phv}{b}{n}\centering{\thetitleotherlanguage}\\\vspace{0.7cm}} ##1}}
+      \include{Content/0-Abstract_DE}
+      \theAbstract
+      \vspace{0.7cm}
+      \textbf{Stichwörter:} \emph{\thekeywordsotherlanguge}
+    \end{otherlanguage}
+  }
+  }
+\fi
+
+%% --------------------
+%% | Acknowledgements |
+%% --------------------
+
+\newcommand{\includeacknowledgments}{}
+\ifIPRthesis@thesis
+  \renewcommand{\includeacknowledgments}{\thispagestyle{empty}\vspace*{\fill}\centering\emph{{\input{Content/0-Acknowledgments.tex}}}\vspace*{\fill} \pagebreak}
+\else
+  \thispagestyle{empty}
+  \pagebreak
+\fi
 
   % \def\ackname{Acknowledgments}
   % \def\abstractname{Abstract}
@@ -384,22 +441,6 @@
   % 	\def\abstractname{Abstract}
   % }
 
-  \renewcommand{\includeabstract}{
-  \iflanguage{ngerman}{
-  % include German and English abstracts
-  \include{Content/0-Abstract_DE}
-  \begin{otherlanguage}{english}
-  \include{Content/0-Abstract_EN}
-  \end{otherlanguage}
-  }{
-  % include English and German abstracts
-  \include{Content/0-Abstract_EN}
-  \begin{otherlanguage}{ngerman}
-  \include{Content/0-Abstract_DE}
-  \end{otherlanguage}
-  }
-  }
-\fi
 
 %% ------------------------------------------
 %% | Tables of Contents, Figures and Tables |
@@ -442,8 +483,8 @@
 % {\addchap{Anhang}}	% german style
 
 %% -----------------------------
-%% | Bibliography |
-%% -----------------------------¨
+%% | Bibliography              |
+%% -----------------------------
 
 
 \ifIPRthesis@thesis
@@ -459,26 +500,5 @@
 % \usepackage[fixlanguage]{babelbib}	% sets german style for literature entries
 % \selectbiblanguage{ngerman}			% for \bibliographystyle{babalpha}
 
-
-%% ---------------------------------
-%% | ToDo Marker - only for draft! |
-%% ---------------------------------
-% Remove this section for final version!
-\setlength{\marginparwidth}{20mm}
-
-\newcommand{\margtodo}
-{\marginpar{\textbf{\textcolor{red}{ToDo}}}{}}
-
-\newcommand{\todo}[1]
-{{\textbf{\textcolor{red}{(\margtodo{}#1)}}}{}}
-
-
-%% --------------------------------
-%% | Old Marker - only for draft! |
-%% --------------------------------
-% Remove this section for final version!
-\newenvironment{deprecated}
-{\begin{color}{gray}}
-{\end{color}}
 
 %% **** END OF CLASS ****

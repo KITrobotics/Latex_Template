@@ -41,6 +41,9 @@
 \usepackage{multicol}
 \usepackage{multirow}
 
+\usepackage{rotating}
+\usepackage{hhline}
+
 %% --------------
 %% | Listings    |
 %% --------------
@@ -68,9 +71,16 @@
 \usepackage{textcomp}
 \usepackage{enumerate}
 
-%% --------------------
-%% | Dummy Text       |
-%% --------------------
+
+%% ------------------------------
+%% | TODOs and Dummy Text       |
+%% ------------------------------
+\iflanguage{ngerman}{
+  \usepackage[colorinlistoftodos,ngerman]{todonotes} %See: https://www.ra.informatik.tu-darmstadt.de/fileadmin/user_upload/Group_RA/eiwa/todonotes.pdf
+}{
+  \usepackage[colorinlistoftodos]{todonotes} %See: https://www.ra.informatik.tu-darmstadt.de/fileadmin/user_upload/Group_RA/eiwa/todonotes.pdf
+}
+
 \usepackage{blindtext}
 
 %% --- End of Packages ---

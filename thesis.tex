@@ -7,10 +7,13 @@
 %% ---------------------------------
 \title{My Title\\
 is Long}
+\titleotherlanguage{Mein Titel\\
+ist lang}
 
 \author{My Name}
 
 \keywords{Keywords, of, my, Thesis}
+\keywordsotherlanguge{Die, Stichw\"orter, f\"ur, meine, Arbeit}
 
 %% Study program or for seminars name of a seminar
 \studyprogram{Intelligente Industrieroboter}
@@ -80,7 +83,14 @@ is Long}
 %% Set the title
 \maketitle
 
+% TODO: Remove this from final version
+\newpage
+\listoftodos
+\newpage
+
 \includedeclaration
+
+\includeacknowledgments
 
 \setcounter{page}{1}
 \pagenumbering{roman}
