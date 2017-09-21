@@ -316,7 +316,7 @@
     \else
       \large
     \fi
-    \iflanguage{ngerman}{An der Fakult\"at f\"ur Informatik}{At the Department of Informatics}
+    \iflanguage{ngerman}{An der Fakult\"at f\"ur Informatik}{At the Department of Computer Science}
     \\
     \theinstitute
 
