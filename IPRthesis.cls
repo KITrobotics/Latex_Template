@@ -5,12 +5,12 @@
 %% Adapted by: Timo Rohrberg, 2009
 %% timo.rohrberg@student.kit.edu
 %%
-%% Additions by: Thorsten Haberecht, IPD - Chair Prof. Böhm, 2010
+%% Additions by: Thorsten Haberecht, IPD - Chair Prof. BÃ¶hm, 2010
 %% thorsten.haberecht@kit.edu
 %%
 %% Additions of multiple classes: Denis ¦togl, IAR-IPR Prof. Hein, 2017
 %% denis.stogl@kit.edu
-%% Ideas taken from: SDQ-Version by Erik Burger (v1.3, Dezember 2016)
+%% Some ideas taken from: SDQ-Version by Erik Burger (v1.3, Dezember 2016)
 
 
 \NeedsTeXFormat{LaTeX2e}
@@ -116,8 +116,9 @@
 %% -------------------------------
 %% |      Globale Settings       |
 %% -------------------------------
+% TODO: Optimize this if needed
 \ifIPRthesis@techreport
-  \setcounter{secnumdepth}{0} % Numbering also for \subsubsections
+  \setcounter{secnumdepth}{3} % Numbering also for \subsubsections
 \else
   \setcounter{secnumdepth}{3} % Numbering also for \subsubsections
 \fi
@@ -247,7 +248,9 @@
   \setkomafont{author}{\huge\changefont{phv}{m}{n}}
 \fi
 
-\uppertitleback{Karlsruher Institut für Technologie\\ Fakultät für Informatik\\ Postfach 6980\\ 76128 Karlsruhe}
+% TODO: Add this for title??
+\def\@author{}
+\renewcommand{\author}[1]{\def\@author{#1}}
 
 \newcommand{\theinstitute}{
   \iflanguage{ngerman}
@@ -271,9 +274,10 @@
 \newcommand{\editingtime}[2]{%
 \renewcommand{\theeditstart}{#1}%
 \renewcommand{\theeditend}{#2}%
+}
+% TODO: Check if this is correct for seminar
 %% do not show the date
 \date{}
-}
 
 \newcommand{\thetitleotherlanguage}{}
 \newcommand{\titleotherlanguage}[1]{\renewcommand{\thetitleotherlanguage}{#1}}
@@ -296,8 +300,12 @@
   \renewcommand{\thethesistype}{#1}}
 \fi
 \ifIPRthesis@techreport
-  \newcommand{\studyprogram}[1]{\subtitle{\vspace*{1.5cm} \iflanguage{ngerman}{geschrieben von}{written by}}
-  \renewcommand{\thethesistype}{#1}}
+    \newcommand{\studyprogram}[1]{
+      \ifx\@author\empty
+      \else
+	\subtitle{\vspace*{1.5cm} \iflanguage{ngerman}{geschrieben von}{written by}}
+      \fi
+    \renewcommand{\thethesistype}{#1}}
 \fi
 
 \newcommand{\settitle}{
@@ -317,6 +325,14 @@
     \begin{tabular}{l c l}
       \ifIPRthesis@seminar
 	\iflanguage{ngerman}{Betreuender Mitarbeiter}{Advisor}: & \hfill & \theadvisorone \\
+      \fi
+      \ifIPRthesis@techreport
+	\ifthenelse{\equal{\thereviewertwo}{}}{
+	  \iflanguage{ngerman}{Gutachter}{Reviewer}: & \hfill  & \thereviewerone \\
+	}{
+	  \iflanguage{ngerman}{Erstgutachter}{First reviewer}: & \hfill & \thereviewerone \\
+	  { }\iflanguage{ngerman}{Zweitgutachter}{Second reviewer}: & \hfill & \thereviewertwo \\
+	}
       \fi
       \ifIPRthesis@thesis
 	\ifthenelse{\equal{\thereviewertwo}{}}{
@@ -349,6 +365,9 @@
   }
 }
 
+\uppertitleback{Karlsruher Institut f\"ur Technologie\\ FakultÃ¤t f\"ur Informatik\\ Postfach 6980\\ 76128 Karlsruhe}
+
+
 \newcommand{\includedeclaration}{}
 \ifIPRthesis@techreport
   \thispagestyle{empty}
@@ -364,7 +383,7 @@
 
 \ifIPRthesis@techreport
   \newcommand{\Abstract}[1]{\chapter*{\iflanguage{ngerman}{\abstractname}{Executive Summary}} #1 \vspace{0.7cm}
-    \textbf{\iflanguage{ngerman}{Stichwörter}{Keywords}:} \emph{\thekeywords}}
+    \textbf{\iflanguage{ngerman}{Stickw\"orter}{Keywords}:} \emph{\thekeywords}}
   \renewcommand{\includeabstract}{
   \iflanguage{ngerman}{
     \include{Content/0-Abstract_DE}
@@ -388,7 +407,7 @@
     \include{Content/0-Abstract_DE}
     \theAbstract
     \vspace{0.7cm}
-    \textbf{Stichwörter:} \emph{\thekeywords}
+    \textbf{Stickw\"orter:} \emph{\thekeywords}
 
     \begin{otherlanguage}{english}
       \renewcommand{\abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname} ##1}}
@@ -412,7 +431,7 @@
       \include{Content/0-Abstract_DE}
       \theAbstract
       \vspace{0.7cm}
-      \textbf{Stichwörter:} \emph{\thekeywordsotherlanguge}
+      \textbf{Stickw\"orter:} \emph{\thekeywordsotherlanguge}
     \end{otherlanguage}
   }
   }
