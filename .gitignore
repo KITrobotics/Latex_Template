@@ -20,6 +20,7 @@
 *.lot
 *.lof
 *.toc
+*.tdo
 
 #*.pdf
 
@@ -34,3 +35,5 @@
 .idea/
 
 cmake/
+
+.directory
