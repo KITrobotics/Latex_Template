@@ -8,7 +8,7 @@
 %% Additions by: Thorsten Haberecht, IPD - Chair Prof. BÃ¶hm, 2010
 %% thorsten.haberecht@kit.edu
 %%
-%% Additions of multiple classes: Denis ¦togl, IAR-IPR Prof. Hein, 2017
+%% Additions of multiple classes: Denis ï¿½togl, IAR-IPR Prof. Hein, 2017
 %% denis.stogl@kit.edu
 %% Some ideas taken from: SDQ-Version by Erik Burger (v1.3, Dezember 2016)
 
@@ -443,7 +443,7 @@
 
 \newcommand{\includeacknowledgments}{}
 \ifIPRthesis@thesis
-  \renewcommand{\includeacknowledgments}{\thispagestyle{empty}\vspace*{\fill}\centering\emph{{\input{Content/0-Acknowledgments.tex}}}\vspace*{\fill} \pagebreak}
+  \renewcommand{\includeacknowledgments}{\thispagestyle{empty}\vspace*{\fill}\begin{center}\emph{\input{Content/0-Acknowledgments.tex}}\end{center}\vspace*{\fill} \pagebreak}
 \else
   \thispagestyle{empty}
   \pagebreak
