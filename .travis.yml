@@ -2,6 +2,12 @@ sudo: required
 dist: trusty
 before_install:
 - sudo apt-get -qq update && sudo apt-get install -y texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-lang-german texlive-lang-english texlive-science
+- sudo apt-get install -y unzip
 script:
+- mkdir ~/texmf
+- cd ~/texmf
+- wget http://mirrors.ctan.org/install/graphics/pgf/base/pgf.tds.zip
+- uzip pfg.tds.zip
+- cd -
 - mkdir build
 - pdflatex -interaction=nonstopmode -halt-on-error -output-directory build thesis.tex
