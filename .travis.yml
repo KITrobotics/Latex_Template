@@ -1,9 +1,9 @@
 sudo: required
-dist: trusty
+dist: xenial
 before_install:
-#- sudo add-apt-repository -y ppa:jonathonf/texlive-2017
-- sudo sh -c 'echo "deb http://ppa.launchpad.net/jonathonf/texlive-2017/ubuntu xenial main" > /etc/apt/sources.list.d/texlive-2017.list'
-- sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-key 0xF06FC659
+- sudo add-apt-repository -y ppa:jonathonf/texlive-2017
+#- sudo sh -c 'echo "deb http://ppa.launchpad.net/jonathonf/texlive-2017/ubuntu xenial main" > /etc/apt/sources.list.d/texlive-2017.list'
+#- sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-key 0xF06FC659
 - sudo apt-get -qq update && sudo apt-get install -y texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-lang-german texlive-lang-english texlive-science
 script:
 - mkdir build
