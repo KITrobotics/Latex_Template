@@ -22,6 +22,7 @@
 %% --------------
 \usepackage[nooneline,bf]{caption} % Figure descriptions from left margin
 \usepackage{times}
+% \usepackage{titling}
 
 %% --------------
 %% | Graphics, Figures, Tables   |
@@ -76,11 +77,15 @@
 %% ------------------------------
 %% | TODOs and Dummy Text       |
 %% ------------------------------
+\ifIPRthesis@final
+  \usepackage[disable]{todonotes}
+\else
 \iflanguage{ngerman}{
   \usepackage[colorinlistoftodos,ngerman]{todonotes} %See: https://www.ra.informatik.tu-darmstadt.de/fileadmin/user_upload/Group_RA/eiwa/todonotes.pdf
 }{
   \usepackage[colorinlistoftodos]{todonotes} %See: https://www.ra.informatik.tu-darmstadt.de/fileadmin/user_upload/Group_RA/eiwa/todonotes.pdf
 }
+\fi
 
 \usepackage{blindtext}
 
@@ -128,6 +133,7 @@
 %     %urlcolor=kit-red100
   }
   \let\theauthor\@author
+  \let\thetitle\@title
 }
 
 %% --- End of Declarations ---

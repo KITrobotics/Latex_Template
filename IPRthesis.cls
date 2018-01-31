@@ -8,9 +8,11 @@
 %% Additions by: Thorsten Haberecht, IPD - Chair Prof. Böhm, 2010
 %% thorsten.haberecht@kit.edu
 %%
-%% Additions of multiple classes: Denis �togl, IAR-IPR Prof. Hein, 2017
+%% Additions of multiple classes: Denis Štogl, IAR-IPR Prof. Hein, 2017
 %% denis.stogl@kit.edu
 %% Some ideas taken from: SDQ-Version by Erik Burger (v1.3, Dezember 2016)
+%%
+%% Version: 0.2 (31.01.2018)
 
 
 \NeedsTeXFormat{LaTeX2e}
@@ -23,6 +25,8 @@
 \newif\ifIPRthesis@phd
 \newif\ifIPRthesis@thesis
 \newif\ifIPRthesis@techreport
+\newif\ifIPRthesis@final
+\newif\ifIPRthesis@declaration
 
 \DeclareOption{german}{\IPRthesis@germantrue}
 \DeclareOption{ngerman}{\IPRthesis@germantrue}
@@ -33,6 +37,8 @@
 \DeclareOption{master}{\IPRthesis@mastertrue \IPRthesis@thesistrue}
 \DeclareOption{phd}{\IPRthesis@phdtrue \IPRthesis@thesistrue}
 \DeclareOption{techreport}{\IPRthesis@techreporttrue}
+\DeclareOption{final}{\IPRthesis@finaltrue}
+\DeclareOption{declaration}{\IPRthesis@declarationtrue}
 
 \ProcessOptions\relax
 
@@ -71,7 +77,16 @@
   \LoadClass[12pt,a4paper,titlepage]{scrartcl}
 \fi
 \ifIPRthesis@thesis
-  \LoadClass[12pt,twoside,headsepline,a4paper,titlepage,DIV=15,BCOR=20mm]{scrbook}
+  % TODO: Use bibtotoc option?
+  \ifIPRthesis@declaration
+    \LoadClass[12pt,twoside,headsepline,a4paper,titlepage=firstiscover,DIV=15,BCOR=20mm]{scrbook}
+	\renewcommand*{\coverpagetopmargin}{48mm}
+% 	\renewcommand*{\coverpageleftmargin}{0mm}
+	\renewcommand*{\coverpagerightmargin}{0mm}
+	\renewcommand*{\coverpagebottommargin}{-10mm}
+  \else
+	\LoadClass[12pt,twoside,headsepline,a4paper,titlepage,DIV=15,BCOR=20mm]{scrbook}
+  \fi
 \fi
 
 
@@ -92,12 +107,14 @@
   \lohead{\headmark}
   \chead{}
   \pagestyle{scrheadings}
+
+  \IPRthesis@declarationfalse
 \fi
 
 %% ----------------------------------------
 %% |         Setup of the document        |
 %% ----------------------------------------
-\input{document_setup}
+\input{IPR_document_setup}
 
 %% -------------------------------
 %% |         New commands        |
@@ -130,8 +147,6 @@
 \parindent 0cm                     % Do not indent beginning of paragraph
 \parskip1.5ex plus0.5ex minus0.5ex % Margin between paragraphs
 %% --- End of global Settings ---
-
-
 
 %% -------------------------------
 %% |      Style of captions      |
@@ -324,10 +339,10 @@
 
     \begin{tabular}{l c l}
       \ifIPRthesis@seminar
-	\iflanguage{ngerman}{Betreuender Mitarbeiter}{Advisor}: & \hfill & \theadvisorone \\
+		\iflanguage{ngerman}{Betreuender Mitarbeiter}{Advisor}: & \hfill & \theadvisorone \\
       \fi
       \ifIPRthesis@techreport
-	\ifthenelse{\equal{\thereviewertwo}{}}{
+		\ifthenelse{\equal{\thereviewertwo}{}}{
 	  \iflanguage{ngerman}{Gutachter}{Reviewer}: & \hfill  & \thereviewerone \\
 	}{
 	  \iflanguage{ngerman}{Erstgutachter}{First reviewer}: & \hfill & \thereviewerone \\
@@ -353,27 +368,53 @@
       \fi
     \end{tabular}
 
-    \vspace{4cm}
+	\ifIPRthesis@declaration \vspace{1.5cm} \else \vspace{4cm} \fi
     \normalsize{
       \ifIPRthesis@techreport
 	\today
       \else
 	\theeditstart{} -- \theeditend
       \fi
-      }
     }
+    }
+\ifIPRthesis@declaration
+	\par\vspace*{1cm}
+    \begin{minipage}{\textwidth}
+    \normalsize{
+	\hbox to \textwidth{\hrulefill}
+	\par\vspace{0.2cm}
+    \iflanguage{ngerman}
+	{Ich versichere wahrheitsgem\"a\ss, die Arbeit selbstst\"andig angefertigt, alle benutzten Hilfsmittel vollst\"andig und genau angegeben und alles kenntlich gemacht zu haben, was aus Arbeiten anderer unver\"andert oder mit Ab\"anderungen entnommen wurde.}
+	{I declare that I have developed and written the enclosed thesis completely by myself, and have not used sources or means without declaration in the text.}
+
+	\vspace{0.4cm}
+	\textbf{Karlsruhe, \today}
+	\vspace{1.2cm}
+
+	\dotfill\hspace*{8.0cm}\\
+	\hspace*{2.0cm}(\textbf{\theauthor}) %center name with hspace
+	}
+	\end{minipage}
+\fi
   }
 }
 
 \uppertitleback{Karlsruher Institut f\"ur Technologie\\ Fakultät f\"ur Informatik\\ Postfach 6980\\ 76128 Karlsruhe}
+\newcommand{\includetitle}{\maketitle \ifIPRthesis@declaration \stop \fi}
 
+%% ------------
+%% | Todos    |
+%% ------------
+
+\newcommand{\includelistoftodos}{}
+\renewcommand{\includelistoftodos}{\ifIPRthesis@final \else \newpage \listoftodos \newpage \fi}
 
 \newcommand{\includedeclaration}{}
 \ifIPRthesis@techreport
   \thispagestyle{empty}
   \pagebreak
 \else
-  \renewcommand{\includedeclaration}{\input{Content/0-Declaration.tex}}
+    \renewcommand{\includedeclaration}{\input{Content/0-Declaration.tex}\blankpage}
 \fi
 
 %% ------------
@@ -383,7 +424,7 @@
 
 \ifIPRthesis@techreport
   \newcommand{\Abstract}[1]{\chapter*{\iflanguage{ngerman}{\abstractname}{Executive Summary}} #1 \vspace{0.7cm}
-    \textbf{\iflanguage{ngerman}{Stickw\"orter}{Keywords}:} \emph{\thekeywords}}
+    \textbf{\iflanguage{ngerman}{Stichw\"orter}{Keywords}:} \emph{\thekeywords}}
   \renewcommand{\includeabstract}{
   \iflanguage{ngerman}{
     \include{Content/0-Abstract_DE}
@@ -403,7 +444,7 @@
   \iflanguage{ngerman}{
     % include German and English abstracts
     \renewcommand{\abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname} ##1}}
-    \renewcommand{\Abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname}\addcontentsline{toc}{chapter}{\abstractname} ##1}}
+    \renewcommand{\Abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname}\addcontentsline{toc}{chapter}{\abstractname} {\Large\changefont{phv}{b}{n}\centering{\thetitle}\\\vspace{0.7cm}} ##1}}
     \include{Content/0-Abstract_DE}
     \theAbstract
     \vspace{0.7cm}
@@ -420,7 +461,7 @@
   }{
     % include English and German abstracts
     \renewcommand{\abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname} ##1}}
-    \renewcommand{\Abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname}\addcontentsline{toc}{chapter}{\abstractname} ##1}}
+    \renewcommand{\Abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname}\addcontentsline{toc}{chapter}{\abstractname} {\Large\changefont{phv}{b}{n}\centering{\thetitle}\\\vspace{0.7cm}} ##1}}
     \include{Content/0-Abstract_EN}
       \theAbstract
       \vspace{0.7cm}
@@ -443,7 +484,7 @@
 
 \newcommand{\includeacknowledgments}{}
 \ifIPRthesis@thesis
-  \renewcommand{\includeacknowledgments}{\thispagestyle{empty}\vspace*{\fill}\begin{center}\emph{\input{Content/0-Acknowledgments.tex}}\end{center}\vspace*{\fill} \pagebreak}
+  \renewcommand{\includeacknowledgments}{\newpage\thispagestyle{empty}\vspace*{\fill}\begin{center}\emph{\input{Content/0-Acknowledgments.tex}}\end{center}\vspace*{\fill}}
 \else
   \thispagestyle{empty}
   \pagebreak
@@ -482,9 +523,14 @@
     \tableofcontents
     \listoffigures \addcontentsline{toc}{chapter}{\listfigurename}
     \listoftables \addcontentsline{toc}{chapter}{\listtablename}
-    \pagebreak
-    }
+    \blankpage
+  }
 \fi
+
+\newcommand{\setmainpart}{
+  \setcounter{page}{1}
+  \pagenumbering{arabic}
+}
 
 %% ------------
 %% | Appendix |

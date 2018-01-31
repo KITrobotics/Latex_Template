@@ -1,3 +1,7 @@
+#Project specific
+Logos/kitlogo_en_cmyk.png
+Logos/KITlogo_Frabe_english.png
+
 #Backup files
 *.bak
 *.swp
@@ -21,6 +25,7 @@
 *.lof
 *.toc
 *.tdo
+*.nlo
 
 #*.pdf
 
