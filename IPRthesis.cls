@@ -259,7 +259,7 @@
 
 \newcommand{\theinstitute}{
   \iflanguage{ngerman}
-   {Institut f\"ur Anthropomatik und Robotik (IAR) -\\ Intelligente Prozessautomation and Robotik (IPR)}
+   {Institut f\"ur Anthropomatik und Robotik (IAR) -\\ Intelligente Prozessautomation und Robotik (IPR)}
    {Institute for Anthropomatics and Robotics (IAR) -\\ Intelligent Process Control and Robotics (IPR)}
   }
 \newcommand{\myinstitute}[1]{\renewcommand{\theinstitute}{#1}}
