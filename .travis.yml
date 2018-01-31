@@ -3,7 +3,6 @@ dist: xenial
 services:
   - docker
 before_install:
-  
   - sudo apt-get -qq update && sudo apt-get install -y texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-lang-german texlive-lang-english texlive-science
 script:
   - mkdir -p build/Content

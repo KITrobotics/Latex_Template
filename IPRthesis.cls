@@ -77,7 +77,16 @@
   \LoadClass[12pt,a4paper,titlepage]{scrartcl}
 \fi
 \ifIPRthesis@thesis
-  \LoadClass[12pt,twoside,headsepline,a4paper,titlepage,DIV=15,BCOR=20mm]{scrbook}
+  % TODO: Use bibtotoc option?
+  \ifIPRthesis@declaration
+    \LoadClass[12pt,twoside,headsepline,a4paper,titlepage=firstiscover,DIV=15,BCOR=20mm]{scrbook}
+	\renewcommand*{\coverpagetopmargin}{48mm}
+% 	\renewcommand*{\coverpageleftmargin}{0mm}
+	\renewcommand*{\coverpagerightmargin}{0mm}
+	\renewcommand*{\coverpagebottommargin}{-10mm}
+  \else
+	\LoadClass[12pt,twoside,headsepline,a4paper,titlepage,DIV=15,BCOR=20mm]{scrbook}
+  \fi
 \fi
 
 
@@ -105,7 +114,7 @@
 %% ----------------------------------------
 %% |         Setup of the document        |
 %% ----------------------------------------
-\input{document_setup}
+\input{IPR_document_setup}
 
 %% -------------------------------
 %% |         New commands        |
@@ -116,7 +125,6 @@
 \newcommand{\chapterheadfont}{}
 \newcommand{\blankpage}{
  \clearpage{\pagestyle{empty}\cleardoublepage}
-% \newcommand{\insertemptypage}{\vspace*{\fill}\thispagestyle{empty}\newpage}
 }
 %% --- End of New Commands ---
 
@@ -331,10 +339,10 @@
 
     \begin{tabular}{l c l}
       \ifIPRthesis@seminar
-	\iflanguage{ngerman}{Betreuender Mitarbeiter}{Advisor}: & \hfill & \theadvisorone \\
+		\iflanguage{ngerman}{Betreuender Mitarbeiter}{Advisor}: & \hfill & \theadvisorone \\
       \fi
       \ifIPRthesis@techreport
-	\ifthenelse{\equal{\thereviewertwo}{}}{
+		\ifthenelse{\equal{\thereviewertwo}{}}{
 	  \iflanguage{ngerman}{Gutachter}{Reviewer}: & \hfill  & \thereviewerone \\
 	}{
 	  \iflanguage{ngerman}{Erstgutachter}{First reviewer}: & \hfill & \thereviewerone \\
@@ -360,7 +368,7 @@
       \fi
     \end{tabular}
 
-	\ifIPRthesis@declaration \vspace{1.2cm} \else \vspace{4cm} \fi
+	\ifIPRthesis@declaration \vspace{1.5cm} \else \vspace{4cm} \fi
     \normalsize{
       \ifIPRthesis@techreport
 	\today
@@ -381,18 +389,18 @@
 
 	\vspace{0.4cm}
 	\textbf{Karlsruhe, \today}
-	\vspace{1cm}
+	\vspace{1.2cm}
 
 	\dotfill\hspace*{8.0cm}\\
 	\hspace*{2.0cm}(\textbf{\theauthor}) %center name with hspace
 	}
 	\end{minipage}
-	\stop
 \fi
   }
 }
 
 \uppertitleback{Karlsruher Institut f\"ur Technologie\\ Fakultät f\"ur Informatik\\ Postfach 6980\\ 76128 Karlsruhe}
+\newcommand{\includetitle}{\maketitle \ifIPRthesis@declaration \stop \fi}
 
 %% ------------
 %% | Todos    |
@@ -515,11 +523,11 @@
     \tableofcontents
     \listoffigures \addcontentsline{toc}{chapter}{\listfigurename}
     \listoftables \addcontentsline{toc}{chapter}{\listtablename}
+    \blankpage
   }
 \fi
 
 \newcommand{\setmainpart}{
-  \blankpage
   \setcounter{page}{1}
   \pagenumbering{arabic}
 }
