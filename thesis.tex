@@ -1,11 +1,12 @@
 %% Choose language: english or german
 %% Choose Thesis type: seminar, bachelor, master, techreport
-\documentclass[german,seminar]{IPRthesis}
+%% Use 'declaration' parameter if you want to generate declaration page
+%% Use 'final' to disable Todo-notes from final version without deleting each one of them
+\documentclass[german,master,declaration]{IPRthesis}
 
 %% ---------------------------------
 %% | Information about the thesis  |
 %% ---------------------------------
-% TODO: Change this \titleenglish \titlegerman. Same for keywords.
 \title{My Title\\
 is Long}
 \titleotherlanguage{Mein Titel\\
@@ -16,11 +17,11 @@ ist lang}
 \keywords{Keywords, of, my, Thesis}
 \keywordsotherlanguge{Die, Stichw\"orter, f\"ur, meine, Arbeit}
 
-%% Study program or for seminars name of a seminar
+%% Study program or a seminar/subject
 \studyprogram{Intelligente Industrieroboter}
 
-\reviewerone{Prof. Dr.-Ing. habil. Björn Hein}
-\reviewertwo{Prof. B}
+\reviewerone{Prof. Dr.-Ing. Torsten Kröger}
+\reviewertwo{Prof. Dr.-Ing. habil. Björn Hein}
 %
 % %% The advisors are PhDs or Postdocs
 \advisorone{M.Sc. C}
@@ -85,9 +86,7 @@ ist lang}
 \maketitle
 
 % TODO: Remove this from final version
-\newpage
-\listoftodos
-\newpage
+\includelistoftodos
 
 \includedeclaration
 
@@ -117,9 +116,8 @@ ist lang}
 %% -----------------
 %% |   Main part   |
 %% -----------------
+\setmainpart
 
-\setcounter{page}{1}
-\pagenumbering{arabic}
 \include{Content/1-Introduction}
 \include{Content/2-State-of-the-art}
 \include{Content/3-Methods}
