@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/KITrobotics/Latex_Template.svg?branch=master)](https://travis-ci.org/KITrobotics/Latex_Template)
+
 # Latex_Template
 Latex Template from Institute for Anthropomatics and Robotics (IAR) - Intelligent Process Automation and Robotics Lab (IPR) (Karlsruhe Institute of Technology - KIT) for thesis and reports.
 
