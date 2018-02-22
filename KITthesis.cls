@@ -12,47 +12,49 @@
 %% denis.stogl@kit.edu
 %% Some ideas taken from: SDQ-Version by Erik Burger (v1.3, Dezember 2016)
 %%
-%% Version: 0.2 (31.01.2018)
+%% Version: 0.3 (22.02.2018)
 
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{IPRthesis}
-\newif\ifIPRthesis@german
-\newif\ifIPRthesis@seminar
-\newif\ifIPRthesis@studien
-\newif\ifIPRthesis@bachelor
-\newif\ifIPRthesis@master
-\newif\ifIPRthesis@phd
-\newif\ifIPRthesis@thesis
-\newif\ifIPRthesis@techreport
-\newif\ifIPRthesis@final
-\newif\ifIPRthesis@declaration
+\ProvidesClass{KITthesis}
 
-\DeclareOption{german}{\IPRthesis@germantrue}
-\DeclareOption{ngerman}{\IPRthesis@germantrue}
 
-\DeclareOption{seminar}{\IPRthesis@seminartrue}
-\DeclareOption{studien}{\IPRthesis@studientrue \IPRthesis@thesistrue}
-\DeclareOption{bachelor}{\IPRthesis@bachelortrue \IPRthesis@thesistrue}
-\DeclareOption{master}{\IPRthesis@mastertrue \IPRthesis@thesistrue}
-\DeclareOption{phd}{\IPRthesis@phdtrue \IPRthesis@thesistrue}
-\DeclareOption{techreport}{\IPRthesis@techreporttrue}
-\DeclareOption{final}{\IPRthesis@finaltrue}
-\DeclareOption{declaration}{\IPRthesis@declarationtrue}
+\newif\ifKITthesis@german
+\newif\ifKITthesis@seminar
+\newif\ifKITthesis@studien
+\newif\ifKITthesis@bachelor
+\newif\ifKITthesis@master
+\newif\ifKITthesis@phd
+\newif\ifKITthesis@thesis
+\newif\ifKITthesis@techreport
+\newif\ifKITthesis@final
+\newif\ifKITthesis@declaration
+
+\DeclareOption{german}{\KITthesis@germantrue}
+\DeclareOption{ngerman}{\KITthesis@germantrue}
+
+\DeclareOption{seminar}{\KITthesis@seminartrue}
+\DeclareOption{studien}{\KITthesis@studientrue \KITthesis@thesistrue}
+\DeclareOption{bachelor}{\KITthesis@bachelortrue \KITthesis@thesistrue}
+\DeclareOption{master}{\KITthesis@mastertrue \KITthesis@thesistrue}
+\DeclareOption{phd}{\KITthesis@phdtrue \KITthesis@thesistrue}
+\DeclareOption{techreport}{\KITthesis@techreporttrue}
+\DeclareOption{final}{\KITthesis@finaltrue}
+\DeclareOption{declaration}{\KITthesis@declarationtrue}
 
 \ProcessOptions\relax
 
 \newcommand{\thesistype}{}
-\ifIPRthesis@studien
+\ifKITthesis@studien
   \renewcommand{\thesistype}{\iflanguage{ngerman}{Studienarbeit}{Student Research Project}}
 \fi
-\ifIPRthesis@bachelor
+\ifKITthesis@bachelor
   \renewcommand{\thesistype}{\iflanguage{ngerman}{Bachelorarbeit}{Bachelor Thesis}}
 \fi
-\ifIPRthesis@master
+\ifKITthesis@master
   \renewcommand{\thesistype}{\iflanguage{ngerman}{Masterarbeit}{Master Thesis}}
 \fi
-\ifIPRthesis@phd
+\ifKITthesis@phd
   \renewcommand{\thesistype}{\iflanguage{ngerman}{Doktorarbeit}{PhD Thesis}}
 \fi
 
@@ -62,7 +64,7 @@
 %% ---------------------------------------------------------------
 %% | Based on KOMAscript by Markus Kohm http://www.komascript.de |
 %% ---------------------------------------------------------------
-\ifIPRthesis@german
+\ifKITthesis@german
   % English is also needed in German thesis for the abstract
   \usepackage[main=ngerman,english]{babel}
 \else
@@ -70,15 +72,15 @@
   \usepackage[main=english,ngerman]{babel}
 \fi
 
-\ifIPRthesis@seminar
+\ifKITthesis@seminar
   \LoadClass[11pt,a4paper,titlepage]{scrartcl}
 \fi
-\ifIPRthesis@techreport
+\ifKITthesis@techreport
   \LoadClass[12pt,a4paper,titlepage]{scrartcl}
 \fi
-\ifIPRthesis@thesis
+\ifKITthesis@thesis
   % TODO: Use bibtotoc option?
-  \ifIPRthesis@declaration
+  \ifKITthesis@declaration
     \LoadClass[12pt,twoside,headsepline,a4paper,titlepage=firstiscover,DIV=15,BCOR=20mm]{scrbook}
 	\renewcommand*{\coverpagetopmargin}{48mm}
 % 	\renewcommand*{\coverpageleftmargin}{0mm}
@@ -98,23 +100,23 @@
 \clubpenalty=10000 %prevent orphans
 \widowpenalty=10000 %prvent widows
 
-\ifIPRthesis@seminar
+\ifKITthesis@seminar
   \lohead{\headmark}
   \chead{}
   \pagestyle{scrheadings}
 \fi
-\ifIPRthesis@techreport
+\ifKITthesis@techreport
   \lohead{\headmark}
   \chead{}
   \pagestyle{scrheadings}
 
-  \IPRthesis@declarationfalse
+  \KITthesis@declarationfalse
 \fi
 
 %% ----------------------------------------
 %% |         Setup of the document        |
 %% ----------------------------------------
-\input{IPR_document_setup}
+\input{KIT_document_setup}
 
 %% -------------------------------
 %% |         New commands        |
@@ -134,7 +136,7 @@
 %% |      Globale Settings       |
 %% -------------------------------
 % TODO: Optimize this if needed
-\ifIPRthesis@techreport
+\ifKITthesis@techreport
   \setcounter{secnumdepth}{3} % Numbering also for \subsubsections
 \else
   \setcounter{secnumdepth}{3} % Numbering also for \subsubsections
@@ -151,10 +153,10 @@
 %% -------------------------------
 %% |      Style of captions      |
 %% -------------------------------
-\ifIPRthesis@seminar
+\ifKITthesis@seminar
   \newcommand{\chapter}{\section}
 \fi
-\ifIPRthesis@techreport
+\ifKITthesis@techreport
   \newcommand{\chapter}{\section}
 \fi
 %% --- End of captions style ---
@@ -187,7 +189,7 @@
 \newcommand{\printgrouplogo}{\includegraphics[width=5cm,height=1.8cm,keepaspectratio]{Logos/\thegrouplogo}}
 \newcommand{\nogrouplogo}{\renewcommand{\printgrouplogo}{}}
 
-\ifIPRthesis@seminar
+\ifKITthesis@seminar
 \else
   \nogrouplogo
 \fi
@@ -234,10 +236,10 @@
 \end{textblock}
 
 \newcommand{\titlepreamble}{}
-\ifIPRthesis@seminar
+\ifKITthesis@seminar
   \renewcommand{\titlepreamble}{Seminar \thethesistype}
 \fi
-\ifIPRthesis@techreport
+\ifKITthesis@techreport
   \renewcommand{\titlepreamble}{\thethesistype}
 \fi
 
@@ -253,7 +255,7 @@
 }
 }
 
-\ifIPRthesis@techreport
+\ifKITthesis@techreport
   \setkomafont{title}{\Huge\changefont{phv}{m}{n}}
   \setkomafont{subtitle}{\large\changefont{phv}{m}{n}}
   \setkomafont{author}{\Large\changefont{phv}{m}{n}}
@@ -327,18 +329,18 @@
 
 %% Thesis type handling
 \newcommand{\thethesistype}{}
-\ifIPRthesis@seminar
+\ifKITthesis@seminar
   \newcommand{\studyprogram}[1]{
       \subtitle{\vspace*{1cm}  \Large{\iflanguage{ngerman}{Seminararbeit von}{Seminar work of}}
       }
       \renewcommand{\thethesistype}{#1}
   }
 \fi
-\ifIPRthesis@thesis
+\ifKITthesis@thesis
   \newcommand{\studyprogram}[1]{\subtitle{\vspace*{1.5cm} \iflanguage{ngerman}{\thesistype\\ im Studiengang #1\\von}{\thesistype\\ in #1\\of}}
   \renewcommand{\thethesistype}{#1}}
 \fi
-\ifIPRthesis@techreport
+\ifKITthesis@techreport
     \newcommand{\studyprogram}[1]{
       \ifx\@author\empty
       \else
@@ -350,7 +352,7 @@
 \newcommand{\settitle}{
   \publishers{
     {\changefont{phv}{m}{n}\selectfont
-    \ifIPRthesis@seminar
+    \ifKITthesis@seminar
       \Large
     \else
       \large
@@ -362,10 +364,10 @@
     \vspace*{1cm}
 
     \begin{tabular}{l c l}
-      \ifIPRthesis@seminar
+      \ifKITthesis@seminar
 		\iflanguage{ngerman}{Betreuender Mitarbeiter}{Advisor}: & \hfill & \theadvisorone \\
       \fi
-      \ifIPRthesis@techreport
+      \ifKITthesis@techreport
 		\ifthenelse{\equal{\thereviewertwo}{}}{
 	  \iflanguage{ngerman}{Gutachter}{Reviewer}: & \hfill  & \thereviewerone \\
 	}{
@@ -373,14 +375,14 @@
 	  { }\iflanguage{ngerman}{Zweitgutachter}{Second reviewer}: & \hfill & \thereviewertwo \\
 	}
       \fi
-      \ifIPRthesis@thesis
+      \ifKITthesis@thesis
 	\ifthenelse{\equal{\thereviewertwo}{}}{
 	  \iflanguage{ngerman}{Gutachter}{Reviewer}: & \hfill  & \thereviewerone \\
 	}{
 	  \iflanguage{ngerman}{Erstgutachter}{First reviewer}: & \hfill & \thereviewerone \\
 	  { }\iflanguage{ngerman}{Zweitgutachter}{Second reviewer}: & \hfill & \thereviewertwo \\
 	}
-	\ifIPRthesis@phd
+	\ifKITthesis@phd
 	\else
 	  \ifthenelse{\equal{\theadvisortwo}{}}{
 	    \iflanguage{ngerman}{Betreuender Mitarbeiter}{Advisor}: & \hfill & \theadvisorone \\
@@ -392,16 +394,16 @@
       \fi
     \end{tabular}
 
-	\ifIPRthesis@declaration \vspace{1.5cm} \else \vspace{4cm} \fi
+	\ifKITthesis@declaration \vspace{1.5cm} \else \vspace{4cm} \fi
     \normalsize{
-      \ifIPRthesis@techreport
+      \ifKITthesis@techreport
 	\today
       \else
 	\theeditstart{} -- \theeditend
       \fi
     }
     }
-\ifIPRthesis@declaration
+\ifKITthesis@declaration
 	\par\vspace*{1cm}
     \begin{minipage}{\textwidth}
     \normalsize{
@@ -424,21 +426,21 @@
 }
 
 \uppertitleback{\theinstitute \\ \theinstitutefaculty \\ \iflanguage{ngerman}{Karlsruher Institut f\"ur Technologie}{Karlsruhe Institute of Technology}\\ \theinstituteaddress \\ \theinstitutecity }
-\ifIPRthesis@techreport
+\ifKITthesis@techreport
 \else
   \lowertitleback{\theauthor \\ \theaddress \\ \thecity \\ \theemail}
 \fi
-\newcommand{\includetitle}{\maketitle \ifIPRthesis@declaration \stop \fi}
+\newcommand{\includetitle}{\maketitle \ifKITthesis@declaration \stop \fi}
 
 %% ------------
 %% | Todos    |
 %% ------------
 
 \newcommand{\includelistoftodos}{}
-\renewcommand{\includelistoftodos}{\ifIPRthesis@final \else \newpage \listoftodos \newpage \fi}
+\renewcommand{\includelistoftodos}{\ifKITthesis@final \else \newpage \listoftodos \newpage \fi}
 
 \newcommand{\includedeclaration}{}
-\ifIPRthesis@techreport
+\ifKITthesis@techreport
   \thispagestyle{empty}
   \pagebreak
 \else
@@ -450,7 +452,7 @@
 %% ------------
 \newcommand{\includeabstract}{}
 
-\ifIPRthesis@techreport
+\ifKITthesis@techreport
   \newcommand{\Abstract}[1]{\chapter*{\iflanguage{ngerman}{\abstractname}{Executive Summary}} #1 \vspace{0.7cm}
     \textbf{\iflanguage{ngerman}{Stichw\"orter}{Keywords}:} \emph{\thekeywords}}
   \renewcommand{\includeabstract}{
@@ -462,7 +464,7 @@
   }
 \fi
 
-\ifIPRthesis@thesis
+\ifKITthesis@thesis
 
   \newcommand{\theAbstract}{}
   \newcommand{\abstract}{}
@@ -511,7 +513,7 @@
 %% --------------------
 
 \newcommand{\includeacknowledgments}{}
-\ifIPRthesis@thesis
+\ifKITthesis@thesis
   \renewcommand{\includeacknowledgments}{\newpage\thispagestyle{empty}\vspace*{\fill}\begin{center}\emph{\input{Content/0-Acknowledgments.tex}}\end{center}\vspace*{\fill}}
 \else
   \thispagestyle{empty}
@@ -534,19 +536,19 @@
 %% | Tables of Contents, Figures and Tables |
 %% ------------------------------------------
 \newcommand{\inculdetableofcontents}{}
-\ifIPRthesis@seminar
+\ifKITthesis@seminar
   \renewcommand{\inculdetableofcontents}{
     \tableofcontents
     \pagebreak
     }
 \fi
-\ifIPRthesis@techreport
+\ifKITthesis@techreport
   \renewcommand{\inculdetableofcontents}{
     \tableofcontents
     \pagebreak
     }
 \fi
-\ifIPRthesis@thesis
+\ifKITthesis@thesis
   \renewcommand{\inculdetableofcontents}{
     \tableofcontents
     \listoffigures \addcontentsline{toc}{chapter}{\listfigurename}
@@ -563,7 +565,7 @@
 %% ------------
 %% | Appendix |
 %% ------------
-\ifIPRthesis@thesis
+\ifKITthesis@thesis
   \newcommand{\Appendix}[1][\appendixname]{\chapter*{#1}\addcontentsline{toc}{chapter}{#1} \appendix \setcounter{figure}{0}}
 \else
   \newcommand{\Appendix}[1][\appendixname]{\chapter*{#1}\addcontentsline{toc}{section}{#1} \appendix \setcounter{figure}{0}}
@@ -580,7 +582,7 @@
 %% -----------------------------
 
 
-\ifIPRthesis@thesis
+\ifKITthesis@thesis
   \newcommand{\Bibliography}[1]{\addcontentsline{toc}{chapter}{\bibname} \bibliography{#1}}
 \else
   \newcommand{\Bibliography}[1]{\addcontentsline{toc}{section}{\bibname} \bibliography{#1}}
