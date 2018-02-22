@@ -182,7 +182,7 @@
 %% | Title page options |
 %% ----------------------
 % Logos
-\newcommand{\thegrouplogo}{iirob.png}
+\newcommand{\thegrouplogo}{KIT-Departments/iirob.png}
 \newcommand{\grouplogo}[1]{\renewcommand{\thegrouplogo}{#1}}
 \newcommand{\printgrouplogo}{\includegraphics[width=5cm,height=1.8cm,keepaspectratio]{Logos/\thegrouplogo}}
 \newcommand{\nogrouplogo}{\renewcommand{\printgrouplogo}{}}
@@ -274,6 +274,23 @@
   }
 \newcommand{\myinstitute}[1]{\renewcommand{\theinstitute}{#1}}
 
+\newcommand{\theinstitutefaculty}{
+  \iflanguage{ngerman}
+   {KIT-Fakult\"at f\"ur Informatik}
+   {KIT Department of Informatics}
+  }
+\newcommand{\KITfaculty}[1]{\renewcommand{\theinstitutefaculty}{#1}}
+
+\newcommand{\theinstituteaddress}{
+  Engler-Bunte-Ring 8
+  }
+\newcommand{\instituteaddress}[1]{\renewcommand{\theinstituteaddress}{#1}}
+
+\newcommand{\theinstitutecity}{
+  76131 Karlsruhe
+  }
+\newcommand{\institutecity}[1]{\renewcommand{\theinstitutecity}{#1}}
+
 \newcommand{\thereviewerone}{}
 \newcommand{\reviewerone}[1]{\renewcommand{\thereviewerone}{#1}}
 \newcommand{\thereviewertwo}{}
@@ -293,6 +310,13 @@
 % TODO: Check if this is correct for seminar
 %% do not show the date
 \date{}
+
+\newcommand{\theaddress}[1]{}
+\newcommand{\address}[1]{\renewcommand{\theaddress}{#1}}
+\newcommand{\thecity}[1]{}
+\newcommand{\city}[1]{\renewcommand{\thecity}{#1}}
+\newcommand{\theemail}[1]{}
+\newcommand{\email}[1]{\renewcommand{\theemail}{#1}}
 
 \newcommand{\thetitleotherlanguage}{}
 \newcommand{\titleotherlanguage}[1]{\renewcommand{\thetitleotherlanguage}{#1}}
@@ -399,7 +423,11 @@
   }
 }
 
-\uppertitleback{Karlsruher Institut f\"ur Technologie\\ Fakultät f\"ur Informatik\\ Postfach 6980\\ 76128 Karlsruhe}
+\uppertitleback{\theinstitute \\ \theinstitutefaculty \\ \iflanguage{ngerman}{Karlsruher Institut f\"ur Technologie}{Karlsruhe Institute of Technology}\\ \theinstituteaddress \\ \theinstitutecity }
+\ifIPRthesis@techreport
+\else
+  \lowertitleback{\theauthor \\ \theaddress \\ \thecity \\ \theemail}
+\fi
 \newcommand{\includetitle}{\maketitle \ifIPRthesis@declaration \stop \fi}
 
 %% ------------
