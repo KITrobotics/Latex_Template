@@ -171,7 +171,7 @@
 \noappendicestocpagenum
 
  \renewcommand\appendix{\par
-   \setcounter{section}{0}%
+   \setcounter{section}{0}%<
    \setcounter{subsection}{0}%
    \setcounter{figure}{0}%
    \renewcommand\thesection{\Alph{section}}%
@@ -553,6 +553,9 @@
     \tableofcontents
     \listoffigures \addcontentsline{toc}{chapter}{\listfigurename}
     \listoftables \addcontentsline{toc}{chapter}{\listtablename}
+    \listoftables \addcontentsline{toc}{chapter}{\listtablename}
+    \lstlistoflistings \addcontentsline{toc}{chapter}{\lstlistlistingname}
+    \listofalgorithms  \addcontentsline{toc}{chapter}{\listalgorithmname}
     \blankpage
   }
 \fi
