@@ -106,7 +106,12 @@
 
 \graphicspath{{Figures/}{../jpeg/png/svg/gif/}}
 
-\newcommand\setpdf{\hypersetup{
+\newcommand\setpdf{
+
+  \let\theauthor\@author
+  \let\thetitle\@title
+
+  \hypersetup{
 %     bookmarks=true,         % show bookmarks bar?
 %     unicode=true,          % non-Latin characters in Acrobat's bookmarks
 %     pdftoolbar=true,        % show Acrobat's toolbar?
@@ -118,7 +123,7 @@
 %     pdfstartview={FitH},    % fits the width of the page to the window
 %     pdftitle={\thethesistype},    % title
 %     pdfauthor={\@author},     % author
-%     pdfsubject={\@title},   % subject of the document
+%     pdfsubject={\thetitle},   % subject of the document
 %     pdfcreator={\@author},   % creator of the document
 %     pdfproducer={\@author}, % producer of the document
 %     pdfkeywords={\keywords}, % list of keywords
@@ -134,8 +139,6 @@
 %     %citecolor=kit-green100,%
 %     %urlcolor=kit-red100
   }
-  \let\theauthor\@author
-  \let\thetitle\@title
 }
 
 %% --- End of Declarations ---
