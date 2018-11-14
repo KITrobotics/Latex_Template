@@ -5,4 +5,22 @@
 
 \dots
 
+Exmaple for a table:
 
+\begin{table}[h]
+\centering
+\resizebox{\columnwidth}{!}{
+ \begin{tabular}{| c | c | c | c |}
+  \hline
+  Object & Speed $[cm/s]$ & Inner LR $[cm]$ & Inner UR $[cm]$ \\ \hline \hline
+  \multirow{3}{*}{\emph{Pitcher}} & real & $ n/a $ & $ 5.65 $ \\
+   & $4.60$ & $3.71 \pm 0.67$ & $5.09 \pm 2.23$ \\
+   & $10.64$ & $3.55 \pm 0.57$ & $6.14 \pm 0.69$ \\ \hline \hline
+  \multirow{3}{*}{Cookie O} & real & $ 7.55 $ & $ 7.55 $ \\
+   & $4.60$ & $6.98 \pm 0.27$ & $6.98 \pm 0.27$ \\
+   & $10.64$ & $6.77 \pm 0.26$ & $6.77 \pm 0.26$ \\ \hline
+ \end{tabular}
+ }
+\caption{Estimated objects inner parameters on different speeds compared to real sizes of the object. Inner LR stands for lower inner radius of the object and Inner UR for upper radius. The real value of inner lower radius for object \emph{Pitcher} is very hard to be determined precisely, therefore the real value is marked with $n/a$.}
+\label{tab:estim_object_parameters_hollow}
+\end{table}

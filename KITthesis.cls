@@ -462,7 +462,7 @@
     \include{Content/0-Abstract_EN}
   }
   }
-\fi
+\fi\thispagestyle{empty}
 
 \ifKITthesis@thesis
 
@@ -589,11 +589,44 @@
 \fi
 
 \iflanguage{ngerman}
-  {\bibliographystyle{unsrtdin}}	% german style
+%   {\bibliographystyle{unsrtdin}}	% german style
+  {\bibliographystyle{IEEEtran}}
   {\bibliographystyle{IEEEtran}}	% english style
+
+% Provide support for the control entries of IEEEtran.bst V1.00 and later.
+\def\bstctlcite#1{\@bsphack
+  \@for\@citeb:=#1\do{%
+    \edef\@citeb{\expandafter\@firstofone\@citeb}%
+    \if@filesw\immediate\write\@auxout{\string\citation{\@citeb}}\fi}%
+  \@esphack}
 
 % \usepackage[fixlanguage]{babelbib}	% sets german style for literature entries
 % \selectbiblanguage{ngerman}			% for \bibliographystyle{babalpha}
+
+%% -----------------------------
+%% | My Bibliography - Entry   |
+%% -----------------------------
+\newcommand{\addmybibentry}{}
+\ifKITthesis@thesis
+  \renewcommand{\addmybibentry}{
+    \newpage
+    \thispagestyle{empty}
+%     Referencing this work: \\ \\
+    @mastersthesis\{\theauthor\_\theeditend, 	\\
+	\tab author = \{\theauthor\},		\\
+	\tab editor = \{\theadvisorone, \theadvisortwo\},	\\
+	\tab ipr-thesis = \thesistype,		\\
+	\tab keywords = \{\thekeywords\},		\\
+	\tab location = \{Karlsruhe, Germany\},	\\
+	\tab month = ,				\\
+	\tab pages = ,				\\
+	\tab school = \{Karlsruhe Institute of Technology\},	\\
+	\tab title = \{\thetitle\},			\\
+	\tab year = \{\theeditend\}			\\
+    \}
+  }
+\fi
+
 
 
 %% **** END OF CLASS ****
