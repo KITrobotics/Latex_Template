@@ -5,8 +5,30 @@
 
 As an useful aid in all scientific work following book is recommended: \cite{deininger1992studienarbeiten}
 
+
+\subsection{Inline lists}
+My robot can:
+\begin{enumerate*}[label=(\roman*)]
+ \item forward and backward movements,
+ \item sidewards movements,
+ \item rotation along any curve in space,
+ \item place of artificial forces along paths.
+\end{enumerate*}
+
+\begin{enumerate*}[label=(\arabic*),itemjoin={{; }}]
+    \item the independently controllable wheels
+    \item the rechargeable battery pack
+    \item the Sick LMS100 laser range scanner
+    \item the force-torque sensor
+    \item the handlebar for controlling the robotic device
+\end{enumerate*}
+
+\url{https://ctan.math.illinois.edu/macros/latex/contrib/enumitem/enumitem.pdf}
+
+You can use inline comments \textbackslash comment\{text to comment\}
+
 \dots
-\todo{Rewrite this seciton}
+\todo{Rewrite this section}
 \nomenclature{IAR-IPR}{Institute for Anthropomatics and Robotics (IAR) - Intelligent Process Control and Robotics (IPR)}
 \Blindtext
 
@@ -16,3 +38,7 @@ As an useful aid in all scientific work following book is recommended: \cite{dei
 \Blindtext
 % \todo[done]{Stuff}
 \Blindtext
+
+
+\subsection{SI Units}
+Please use \texttt{siunitx} package for this. See:  \url{https://ctan.org/pkg/siunitx}

@@ -92,6 +92,8 @@ ist lang}
 %% Here, main documents begins %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
+%% Uncomment this to use only first authors name in bibliography
+% \bstctlcite{BSTcontrol}
 
 %% Set PDF metadata
 \setpdf
@@ -148,5 +150,10 @@ ist lang}
 %% ----------------
 % \cleardoublepage
 \include{Content/11-Appendix}
+
+%% --------------------
+%% |   MyBib Entry    |
+%% --------------------
+\addmybibentry
 
 \end{document}

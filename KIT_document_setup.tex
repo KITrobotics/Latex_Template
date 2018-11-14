@@ -94,6 +94,7 @@ framexleftmargin=20pt
 
 \usepackage{textcomp}
 \usepackage{enumerate}
+\usepackage[inline]{enumitem}
 
 
 %% ------------------------------
@@ -126,7 +127,12 @@ framexleftmargin=20pt
 
 \graphicspath{{Figures/}{../jpeg/png/svg/gif/}}
 
-\newcommand\setpdf{\hypersetup{
+\newcommand\setpdf{
+
+  \let\theauthor\@author
+  \let\thetitle\@title
+
+  \hypersetup{
 %     bookmarks=true,         % show bookmarks bar?
 %     unicode=true,          % non-Latin characters in Acrobat's bookmarks
 %     pdftoolbar=true,        % show Acrobat's toolbar?
@@ -138,7 +144,7 @@ framexleftmargin=20pt
 %     pdfstartview={FitH},    % fits the width of the page to the window
 %     pdftitle={\thethesistype},    % title
 %     pdfauthor={\@author},     % author
-%     pdfsubject={\@title},   % subject of the document
+%     pdfsubject={\thetitle},   % subject of the document
 %     pdfcreator={\@author},   % creator of the document
 %     pdfproducer={\@author}, % producer of the document
 %     pdfkeywords={\keywords}, % list of keywords
@@ -154,8 +160,8 @@ framexleftmargin=20pt
 %     %citecolor=kit-green100,%
 %     %urlcolor=kit-red100
   }
-  \let\theauthor\@author
-  \let\thetitle\@title
 }
+
+\newcommand\tab[1][1cm]{\hspace*{#1}}
 
 %% --- End of Declarations ---

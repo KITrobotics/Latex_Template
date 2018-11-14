@@ -171,7 +171,7 @@
 \noappendicestocpagenum
 
  \renewcommand\appendix{\par
-   \setcounter{section}{0}%<
+   \setcounter{section}{0}%
    \setcounter{subsection}{0}%
    \setcounter{figure}{0}%
    \renewcommand\thesection{\Alph{section}}%
@@ -184,9 +184,13 @@
 %% | Title page options |
 %% ----------------------
 % Logos
+\newcommand{\theinstitutelogo}{\iflanguage{ngerman}{KIT-Departments/IPRLogo_de}{KIT-Departments/IPRLogo_en}}
+\newcommand{\institutelogo}[1]{\renewcommand{\theinstitutelogo}{#1}}
+\newcommand{\printinstitutelogo}{\includegraphics[width=5cm,height=1.8cm,keepaspectratio]{Logos/\theinstitutelogo}}
+\newcommand{\noinstitutelogo}{\renewcommand{\printinstitutelogo}{}}
 \newcommand{\thegrouplogo}{KIT-Departments/iirob.png}
 \newcommand{\grouplogo}[1]{\renewcommand{\thegrouplogo}{#1}}
-\newcommand{\printgrouplogo}{\includegraphics[width=5cm,height=1.8cm,keepaspectratio]{Logos/\thegrouplogo}}
+\newcommand{\printgrouplogo}{~\\  \hspace*{\fill} \includegraphics[width=3cm,height=1.8cm,keepaspectratio]{Logos/\thegrouplogo}}
 \newcommand{\nogrouplogo}{\renewcommand{\printgrouplogo}{}}
 
 \ifKITthesis@seminar
@@ -220,13 +224,14 @@
 {\includegraphics[height=1.8cm]{Logos/kitlogo_en_cmyk}}
 \hfill
 % Institute/Group logo
+\printinstitutelogo     \ifKITthesis@declaration \else \\ \fi
 \printgrouplogo
 
 \begin{textblock}{10}[0,0](3.5,16.8)
   \tiny{
 	\iflanguage{ngerman}
-		{KIT -- Universit\"at des Landes Baden-W\"urttemberg und nationales Forschungszentrum in der Helmholtz-Gemeinschaft}
-		{KIT -- University of the State of Baden-Wuerttemberg and National Research Center of the Helmholtz Association}
+		{KIT -- Die Forschungsuniversit\"at in der Helmholtz-Gemeinschaft}
+		{KIT -- The Research University in the Helmholtz Association}
   }
 \end{textblock}
 \begin{textblock}{10}[0,0](15,16.75)
@@ -272,7 +277,7 @@
 \newcommand{\theinstitute}{
   \iflanguage{ngerman}
    {Institut f\"ur Anthropomatik und Robotik (IAR) -\\ Intelligente Prozessautomation und Robotik (IPR)}
-   {Institute for Anthropomatics and Robotics (IAR) -\\ Intelligent Process Control and Robotics (IPR)}
+   {Institute for Anthropomatics and Robotics (IAR) -\\ Intelligent Process Automation and Robotics Lab (IPR)}
   }
 \newcommand{\myinstitute}[1]{\renewcommand{\theinstitute}{#1}}
 
@@ -337,7 +342,8 @@
   }
 \fi
 \ifKITthesis@thesis
-  \newcommand{\studyprogram}[1]{\subtitle{\vspace*{1.5cm} \iflanguage{ngerman}{\thesistype\\ im Studiengang #1\\von}{\thesistype\\ in #1\\of}}
+%   \newcommand{\studyprogram}[1]{\subtitle{\vspace*{1.5cm} \iflanguage{ngerman}{\thesistype\\ im Studiengang #1\\von}{\thesistype\\ in #1\\of}}
+  \newcommand{\studyprogram}[1]{\subtitle{\vspace*{1.5cm} \iflanguage{ngerman}{\thesistype\\ ~\\von}{\thesistype\\ ~\\of}}
   \renewcommand{\thethesistype}{#1}}
 \fi
 \ifKITthesis@techreport
@@ -361,7 +367,7 @@
     \\
     \theinstitute
 
-    \vspace*{1cm}
+    \ifKITthesis@declaration \vspace*{1cm} \else \vspace*{2cm} \fi
 
     \begin{tabular}{l c l}
       \ifKITthesis@seminar
@@ -462,7 +468,7 @@
     \include{Content/0-Abstract_EN}
   }
   }
-\fi
+\fi\thispagestyle{empty}
 
 \ifKITthesis@thesis
 
@@ -478,7 +484,7 @@
     \include{Content/0-Abstract_DE}
     \theAbstract
     \vspace{0.7cm}
-    \textbf{Stickw\"orter:} \emph{\thekeywords}
+    \textbf{Stichw\"orter:} \emph{\thekeywords}
 
     \begin{otherlanguage}{english}
       \renewcommand{\abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname} ##1}}
@@ -553,9 +559,9 @@
     \tableofcontents
     \listoffigures \addcontentsline{toc}{chapter}{\listfigurename}
     \listoftables \addcontentsline{toc}{chapter}{\listtablename}
-    \listoftables \addcontentsline{toc}{chapter}{\listtablename}
-    \lstlistoflistings \addcontentsline{toc}{chapter}{\lstlistlistingname}
-    \listofalgorithms  \addcontentsline{toc}{chapter}{\listalgorithmname}
+%     \listoftables \addcontentsline{toc}{chapter}{\listtablename}
+%     \lstlistoflistings \addcontentsline{toc}{chapter}{\lstlistlistingname}
+%     \listofalgorithms  \addcontentsline{toc}{chapter}{\listalgorithmname}
     \blankpage
   }
 \fi
@@ -592,11 +598,44 @@
 \fi
 
 \iflanguage{ngerman}
-  {\bibliographystyle{unsrtdin}}	% german style
+%   {\bibliographystyle{unsrtdin}}	% german style
+  {\bibliographystyle{IEEEtran}}
   {\bibliographystyle{IEEEtran}}	% english style
+
+% Provide support for the control entries of IEEEtran.bst V1.00 and later.
+\def\bstctlcite#1{\@bsphack
+  \@for\@citeb:=#1\do{%
+    \edef\@citeb{\expandafter\@firstofone\@citeb}%
+    \if@filesw\immediate\write\@auxout{\string\citation{\@citeb}}\fi}%
+  \@esphack}
 
 % \usepackage[fixlanguage]{babelbib}	% sets german style for literature entries
 % \selectbiblanguage{ngerman}			% for \bibliographystyle{babalpha}
+
+%% -----------------------------
+%% | My Bibliography - Entry   |
+%% -----------------------------
+\newcommand{\addmybibentry}{}
+\ifKITthesis@thesis
+  \renewcommand{\addmybibentry}{
+    \newpage
+    \thispagestyle{empty}
+%     Referencing this work: \\ \\
+    @mastersthesis\{\theauthor\_\theeditend, 	\\
+	\tab author = \{\theauthor\},		\\
+	\tab editor = \{\theadvisorone, \theadvisortwo\},	\\
+	\tab ipr-thesis = \thesistype,		\\
+	\tab keywords = \{\thekeywords\},		\\
+	\tab location = \{Karlsruhe, Germany\},	\\
+	\tab month = ,				\\
+	\tab pages = ,				\\
+	\tab school = \{Karlsruhe Institute of Technology\},	\\
+	\tab title = \{\thetitle\},			\\
+	\tab year = \{\theeditend\}			\\
+    \}
+  }
+\fi
+
 
 
 %% **** END OF CLASS ****
