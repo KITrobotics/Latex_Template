@@ -230,7 +230,7 @@
 \begin{textblock}{10}[0,0](3.5,16.8)
   \tiny{
 	\iflanguage{ngerman}
-		{KIT -- Die Forschungsuniversität in der Helmholtz-Gemeinschaft}
+		{KIT -- Die Forschungsuniversit\"at in der Helmholtz-Gemeinschaft}
 		{KIT -- The Research University in the Helmholtz Association}
   }
 \end{textblock}
@@ -364,7 +364,7 @@
       \large
     \fi
     \iflanguage{ngerman}{An der Fakult\"at f\"ur Informatik}{At the Department of Computer Science}
-    \\Seminar work of
+    \\
     \theinstitute
 
     \ifKITthesis@declaration \vspace*{1cm} \else \vspace*{2cm} \fi
@@ -559,6 +559,9 @@
     \tableofcontents
     \listoffigures \addcontentsline{toc}{chapter}{\listfigurename}
     \listoftables \addcontentsline{toc}{chapter}{\listtablename}
+%     \listoftables \addcontentsline{toc}{chapter}{\listtablename}
+%     \lstlistoflistings \addcontentsline{toc}{chapter}{\lstlistlistingname}
+%     \listofalgorithms  \addcontentsline{toc}{chapter}{\listalgorithmname}
     \blankpage
   }
 \fi
