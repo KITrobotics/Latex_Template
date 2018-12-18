@@ -343,7 +343,7 @@
 \fi
 \ifKITthesis@thesis
 %   \newcommand{\studyprogram}[1]{\subtitle{\vspace*{1.5cm} \iflanguage{ngerman}{\thesistype\\ im Studiengang #1\\von}{\thesistype\\ in #1\\of}}
-  \newcommand{\studyprogram}[1]{\subtitle{\vspace*{1.5cm} \iflanguage{ngerman}{\thesistype\\ ~\\von}{\thesistype\\ ~\\of}}
+  \newcommand{\studyprogram}[1]{\subtitle{\vspace*{1cm} \iflanguage{ngerman}{\thesistype\\ ~\\von}{\thesistype\\ ~\\of}}
   \renewcommand{\thethesistype}{#1}}
 \fi
 \ifKITthesis@techreport
@@ -400,7 +400,7 @@
       \fi
     \end{tabular}
 
-	\ifKITthesis@declaration \vspace{1.5cm} \else \vspace{4cm} \fi
+	\ifKITthesis@declaration \vspace{1cm} \else \vspace{4cm} \fi
     \normalsize{
       \ifKITthesis@techreport
 	\today
@@ -557,14 +557,26 @@
 \ifKITthesis@thesis
   \renewcommand{\inculdetableofcontents}{
     \tableofcontents
-    \listoffigures \addcontentsline{toc}{chapter}{\listfigurename}
-    \listoftables \addcontentsline{toc}{chapter}{\listtablename}
-%     \listoftables \addcontentsline{toc}{chapter}{\listtablename}
-%     \lstlistoflistings \addcontentsline{toc}{chapter}{\lstlistlistingname}
-%     \listofalgorithms  \addcontentsline{toc}{chapter}{\listalgorithmname}
     \blankpage
   }
 \fi
+
+\newcommand{\inculdelistoffigures}{}
+\renewcommand{\inculdelistoffigures}{
+    \listoffigures \addcontentsline{toc}{chapter}{\listfigurename}
+}
+\newcommand{\inculdelistoftables}{}
+\renewcommand{\inculdelistoftables}{
+    \listoftables \addcontentsline{toc}{chapter}{\listtablename}
+}
+\newcommand{\inculdelistoflistings}{}
+\renewcommand{\inculdelistoflistings}{
+    \lstlistoflistings \addcontentsline{toc}{chapter}{\lstlistlistingname}
+}
+\newcommand{\inculdelistofalgoritms}{}
+\renewcommand{\inculdelistofalgoritms}{
+    \listofalgorithms  \addcontentsline{toc}{chapter}{\listalgorithmname}
+}
 
 \newcommand{\setmainpart}{
   \setcounter{page}{1}
@@ -636,6 +648,14 @@
   }
 \fi
 
+\newcommand{\includehowtouse}{}
+\ifKITthesis@final
+\else
+    \renewcommand{\includehowtouse}{
+        \renewcommand\thesection{\arabic{chapter}}%
+        \include{Content/0-How-to-Use}
+    }
+\fi
 
 
 %% **** END OF CLASS ****

@@ -164,4 +164,14 @@ framexleftmargin=20pt
 
 \newcommand\tab[1][1cm]{\hspace*{#1}}
 
+\newcommand{\comment}[1]{}
+
+\ifKITthesis@final
+    \newcommand{\afterReview}[1]{#1}
+    \newcommand{\afterReviewFig}[1]{#1}
+\else
+    \newcommand{\afterReview}[1]{{\color{magenta}#1}}
+    \newcommand{\afterReviewFig}[1]{\colorbox{magenta}{#1}}
+\fi
+
 %% --- End of Declarations ---

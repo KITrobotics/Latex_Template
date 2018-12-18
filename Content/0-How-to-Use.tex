@@ -1,0 +1,90 @@
+%% ==============================
+\chapter{How to use this Template}
+\label{sec:how-to-use}
+%% ==============================
+
+As an useful aid in all scientific work following book is recommended: \cite{deininger1992studienarbeiten}
+
+
+\subsection{Inline lists}
+My robot can:
+\begin{enumerate*}[label=(\roman*)]
+ \item forward and backward movements,
+ \item sidewards movements,
+ \item rotation along any curve in space,
+ \item place of artificial forces along paths.
+\end{enumerate*}
+
+\begin{enumerate*}[label=(\arabic*),itemjoin={{; }}]
+    \item the independently controllable wheels
+    \item the rechargeable battery pack
+    \item the Sick LMS100 laser range scanner
+    \item the force-torque sensor
+    \item the handlebar for controlling the robotic device
+\end{enumerate*}
+
+\url{https://ctan.math.illinois.edu/macros/latex/contrib/enumitem/enumitem.pdf}
+
+\subsection{Todos}
+
+\dots
+\todo{Rewrite this section}
+\todo[color=green]{Stuff}
+% \todo[due=2017-08-18]{Stuff}
+% \todo[done]{Stuff}
+
+\subsection{Nomenclature}
+Use following command:
+
+\textbackslash nomenclature\{IAR-IPR\}\{Institute for Anthropomatics and Robotics (IAR) - Intelligent Process Control and Robotics (IPR)\}
+\nomenclature{IAR-IPR}{Institute for Anthropomatics and Robotics (IAR) - Intelligent Process Control and Robotics (IPR)}
+
+\subsection{SI Units}
+Please use \texttt{siunitx} package for this. See:  \url{https://ctan.org/pkg/siunitx}
+
+\subsection{Tables}
+\begin{table}[H]
+\caption{Tables have caption on top.}
+\label{tab:table_caption}
+\centering
+\resizebox{\columnwidth}{!}{
+ \begin{tabular}{| c | c | c | c |}
+  \hline
+  Object & Speed $[cm/s]$ & Inner LR $[cm]$ & Inner UR $[cm]$ \\ \hline \hline
+  \multirow{3}{*}{\emph{Pitcher}} & real & $ n/a $ & $ 5.65 $ \\
+   & $4.60$ & $3.71 \pm 0.67$ & $5.09 \pm 2.23$ \\
+   & $10.64$ & $3.55 \pm 0.57$ & $6.14 \pm 0.69$ \\ \hline \hline
+  \multirow{3}{*}{Cookie O} & real & $ 7.55 $ & $ 7.55 $ \\
+   & $4.60$ & $6.98 \pm 0.27$ & $6.98 \pm 0.27$ \\
+   & $10.64$ & $6.77 \pm 0.26$ & $6.77 \pm 0.26$ \\ \hline
+ \end{tabular}
+ }
+\end{table}
+
+\subsection{Figures}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{IPRLogo_en}
+    \caption{Figures have caption under. If you use figures from other work, do not forget to reference them \cite{deininger1992studienarbeiten}.}
+    \label{fig:figure_caption}
+\end{figure}
+
+\subsection{Citation}
+
+Multiple citation do like this \cite{deininger1992studienarbeiten, deininger1992studienarbeiten}
+
+\subsection{Equations}
+Use numbered equations:
+\begin{equation} \label{equ:equ}
+  m \cdot \ddot{x}(t) + d \cdot \dot{x}(t) = F(t)
+\end{equation}
+
+
+\subsection{Inline comments}
+Use command \texttt{\textbackslash comment\{\}} for inline comments.
+
+\subsection{After Review marking}
+Use command \texttt{\textbackslash afterReview\{\}} for marking text parts as \afterReview{changed}.
+
+\subsection{Finalizing the Document}
+Please check here: \url{https://github.com/KITrobotics/Latex_Template/blob/master/README.md#finalizing-document}
