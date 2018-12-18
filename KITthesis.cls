@@ -184,9 +184,13 @@
 %% | Title page options |
 %% ----------------------
 % Logos
+\newcommand{\theinstitutelogo}{\iflanguage{ngerman}{KIT-Departments/IPRLogo_de}{KIT-Departments/IPRLogo_en}}
+\newcommand{\institutelogo}[1]{\renewcommand{\theinstitutelogo}{#1}}
+\newcommand{\printinstitutelogo}{\includegraphics[width=5cm,height=1.8cm,keepaspectratio]{Logos/\theinstitutelogo}}
+\newcommand{\noinstitutelogo}{\renewcommand{\printinstitutelogo}{}}
 \newcommand{\thegrouplogo}{KIT-Departments/iirob.png}
 \newcommand{\grouplogo}[1]{\renewcommand{\thegrouplogo}{#1}}
-\newcommand{\printgrouplogo}{\includegraphics[width=5cm,height=1.8cm,keepaspectratio]{Logos/\thegrouplogo}}
+\newcommand{\printgrouplogo}{~\\  \hspace*{\fill} \includegraphics[width=3cm,height=1.8cm,keepaspectratio]{Logos/\thegrouplogo}}
 \newcommand{\nogrouplogo}{\renewcommand{\printgrouplogo}{}}
 
 \ifKITthesis@seminar
@@ -220,13 +224,14 @@
 {\includegraphics[height=1.8cm]{Logos/kitlogo_en_cmyk}}
 \hfill
 % Institute/Group logo
+\printinstitutelogo     \ifKITthesis@declaration \else \\ \fi
 \printgrouplogo
 
 \begin{textblock}{10}[0,0](3.5,16.8)
   \tiny{
 	\iflanguage{ngerman}
-		{KIT -- Universit\"at des Landes Baden-W\"urttemberg und nationales Forschungszentrum in der Helmholtz-Gemeinschaft}
-		{KIT -- University of the State of Baden-Wuerttemberg and National Research Center of the Helmholtz Association}
+		{KIT -- Die Forschungsuniversit\"at in der Helmholtz-Gemeinschaft}
+		{KIT -- The Research University in the Helmholtz Association}
   }
 \end{textblock}
 \begin{textblock}{10}[0,0](15,16.75)
@@ -272,7 +277,7 @@
 \newcommand{\theinstitute}{
   \iflanguage{ngerman}
    {Institut f\"ur Anthropomatik und Robotik (IAR) -\\ Intelligente Prozessautomation und Robotik (IPR)}
-   {Institute for Anthropomatics and Robotics (IAR) -\\ Intelligent Process Control and Robotics (IPR)}
+   {Institute for Anthropomatics and Robotics (IAR) -\\ Intelligent Process Automation and Robotics Lab (IPR)}
   }
 \newcommand{\myinstitute}[1]{\renewcommand{\theinstitute}{#1}}
 
@@ -337,7 +342,8 @@
   }
 \fi
 \ifKITthesis@thesis
-  \newcommand{\studyprogram}[1]{\subtitle{\vspace*{1.5cm} \iflanguage{ngerman}{\thesistype\\ im Studiengang #1\\von}{\thesistype\\ in #1\\of}}
+%   \newcommand{\studyprogram}[1]{\subtitle{\vspace*{1.5cm} \iflanguage{ngerman}{\thesistype\\ im Studiengang #1\\von}{\thesistype\\ in #1\\of}}
+  \newcommand{\studyprogram}[1]{\subtitle{\vspace*{1cm} \iflanguage{ngerman}{\thesistype\\ ~\\von}{\thesistype\\ ~\\of}}
   \renewcommand{\thethesistype}{#1}}
 \fi
 \ifKITthesis@techreport
@@ -361,7 +367,7 @@
     \\
     \theinstitute
 
-    \vspace*{1cm}
+    \ifKITthesis@declaration \vspace*{1cm} \else \vspace*{2cm} \fi
 
     \begin{tabular}{l c l}
       \ifKITthesis@seminar
@@ -394,7 +400,7 @@
       \fi
     \end{tabular}
 
-	\ifKITthesis@declaration \vspace{1.5cm} \else \vspace{4cm} \fi
+	\ifKITthesis@declaration \vspace{1cm} \else \vspace{4cm} \fi
     \normalsize{
       \ifKITthesis@techreport
 	\today
@@ -478,7 +484,7 @@
     \include{Content/0-Abstract_DE}
     \theAbstract
     \vspace{0.7cm}
-    \textbf{Stickw\"orter:} \emph{\thekeywords}
+    \textbf{Stichw\"orter:} \emph{\thekeywords}
 
     \begin{otherlanguage}{english}
       \renewcommand{\abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname} ##1}}
@@ -551,11 +557,26 @@
 \ifKITthesis@thesis
   \renewcommand{\inculdetableofcontents}{
     \tableofcontents
-    \listoffigures \addcontentsline{toc}{chapter}{\listfigurename}
-    \listoftables \addcontentsline{toc}{chapter}{\listtablename}
     \blankpage
   }
 \fi
+
+\newcommand{\inculdelistoffigures}{}
+\renewcommand{\inculdelistoffigures}{
+    \listoffigures \addcontentsline{toc}{chapter}{\listfigurename}
+}
+\newcommand{\inculdelistoftables}{}
+\renewcommand{\inculdelistoftables}{
+    \listoftables \addcontentsline{toc}{chapter}{\listtablename}
+}
+\newcommand{\inculdelistoflistings}{}
+\renewcommand{\inculdelistoflistings}{
+    \lstlistoflistings \addcontentsline{toc}{chapter}{\lstlistlistingname}
+}
+\newcommand{\inculdelistofalgoritms}{}
+\renewcommand{\inculdelistofalgoritms}{
+    \listofalgorithms  \addcontentsline{toc}{chapter}{\listalgorithmname}
+}
 
 \newcommand{\setmainpart}{
   \setcounter{page}{1}
@@ -627,6 +648,14 @@
   }
 \fi
 
+\newcommand{\includehowtouse}{}
+\ifKITthesis@final
+\else
+    \renewcommand{\includehowtouse}{
+        \renewcommand\thesection{\arabic{chapter}}%
+        \include{Content/0-How-to-Use}
+    }
+\fi
 
 
 %% **** END OF CLASS ****

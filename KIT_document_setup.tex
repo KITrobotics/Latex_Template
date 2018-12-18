@@ -50,9 +50,29 @@
 %% | Listings    |
 %% --------------
 \usepackage{algorithm}		  % Code-Listings
-\usepackage{algorithmic}	  % Code-Listings
+\usepackage{algpseudocode}    % algorithmicx with layout
+%\usepackage{algorithmic}	  % Code-Listings
 % see http://www.ctan.org/tex-archive/macros/latex/contrib/algorithm2e/algorithm2e.pdf
 % for more sophisticated algorithm listings
+\usepackage{listings}
+
+\lstset{
+language=C++,
+basicstyle=\small\ttfamily,
+numbers=left,
+numbersep=5pt,
+xleftmargin=20pt,
+frame=tb,
+framexleftmargin=20pt
+}
+% Make listings similar to algorithm environment
+\DeclareCaptionFormat{mylst}{\hrule#1#2#3}
+\captionsetup[lstlisting]{format=mylst,labelfont=bf,singlelinecheck=off,labelsep=space}
+
+
+%% -------------------
+%% | Nomenclature    |
+%% -------------------
 \usepackage{nomencl}
 
 %% --------------
@@ -143,5 +163,15 @@
 }
 
 \newcommand\tab[1][1cm]{\hspace*{#1}}
+
+\newcommand{\comment}[1]{}
+
+\ifKITthesis@final
+    \newcommand{\afterReview}[1]{#1}
+    \newcommand{\afterReviewFig}[1]{#1}
+\else
+    \newcommand{\afterReview}[1]{{\color{magenta}#1}}
+    \newcommand{\afterReviewFig}[1]{\colorbox{magenta}{#1}}
+\fi
 
 %% --- End of Declarations ---

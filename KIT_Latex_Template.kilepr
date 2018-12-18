@@ -26,27 +26,27 @@ mode=BibTeX
 
 [item:Content/0-Abstract_DE.tex]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=LaTeX
+mode=LaTeX
 
 [item:Content/0-Abstract_EN.tex]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=LaTeX
+mode=LaTeX
 
 [item:Content/0-Acknowledgments.tex]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=LaTeX
+mode=LaTeX
 
 [item:Content/0-Declaration.tex]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=LaTeX
+mode=LaTeX
 
 [item:Content/1-Introduction.tex]
 archive=true
@@ -56,63 +56,63 @@ mode=LaTeX
 
 [item:Content/11-Appendix.tex]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=LaTeX
+mode=LaTeX
 
 [item:Content/2-State-of-the-art.tex]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=LaTeX
+mode=LaTeX
 
 [item:Content/3-Methods.tex]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=LaTeX
+mode=LaTeX
 
 [item:Content/4-Concept.tex]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=LaTeX
+mode=LaTeX
 
 [item:Content/5-Implementation.tex]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=LaTeX
+mode=LaTeX
 
 [item:Content/6-Results.tex]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=LaTeX
+mode=LaTeX
 
 [item:Content/7-Discussion.tex]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=LaTeX
+mode=LaTeX
 
 [item:Content/8-Conclusion.tex]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=LaTeX
+mode=LaTeX
 
 [item:IEEEtran.bst]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=None
+mode=Normal
 
 [item:KIT_Latex_Template.kilepr]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=None
+mode=Normal
 
 [item:KIT_document_setup.tex]
 archive=true
@@ -158,81 +158,81 @@ mode=
 
 [item:README.md]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=Markdown
+mode=Markdown
 
 [item:conclusion.aux]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=None
+mode=Normal
 
 [item:evaluation.aux]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=None
+mode=Normal
 
 [item:introduction.aux]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=None
+mode=Normal
 
 [item:thesis.aux]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=None
+mode=Normal
 
 [item:thesis.bbl]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=None
+mode=Normal
 
 [item:thesis.bib]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=BibTeX
+mode=BibTeX
 
 [item:thesis.blg]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=None
+mode=Normal
 
 [item:thesis.lof]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=None
+mode=Normal
 
 [item:thesis.log]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=None
+mode=Normal
 
 [item:thesis.lot]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=None
+mode=Normal
 
 [item:thesis.nlo]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=None
+mode=Normal
 
 [item:thesis.out]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=None
+mode=Normal
 
 [item:thesis.pdf]
 archive=true
@@ -242,9 +242,9 @@ mode=
 
 [item:thesis.tdo]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=None
+mode=Normal
 
 [item:thesis.tex]
 archive=true
@@ -254,15 +254,15 @@ mode=LaTeX
 
 [item:thesis.tex.backup]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=None
+mode=Normal
 
 [item:thesis.toc]
 archive=true
 encoding=UTF-8
 highlight=None
-mode=
+mode=Normal
 
 [item:thesis_declaration.pdf]
 archive=true
@@ -272,6 +272,6 @@ mode=
 
 [item:titlepage.aux]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=None
+mode=Normal

@@ -23,6 +23,8 @@ Logos/KITlogo_Frabe_english.png
 *.out
 *.lot
 *.lof
+*.loa
+*.lol
 *.toc
 *.tdo
 *.nlo
@@ -42,3 +44,5 @@ Logos/KITlogo_Frabe_english.png
 cmake/
 
 .directory
+
+*synctex.gz
