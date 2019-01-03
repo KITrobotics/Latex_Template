@@ -609,10 +609,13 @@
   \newcommand{\Bibliography}[1]{\addcontentsline{toc}{section}{\bibname} \bibliography{#1}}
 \fi
 
-\iflanguage{ngerman}
-%   {\bibliographystyle{unsrtdin}}	% german style
-  {\bibliographystyle{IEEEtran}}
-  {\bibliographystyle{IEEEtran}}	% english style
+% \iflanguage{ngerman}
+% %   {\bibliographystyle{unsrtdin}}	% german style
+%   {\bibliographystyle{IEEEtran}}
+%   {\bibliographystyle{IEEEtran}}	% english style
+
+%% Use plainnat to work nicely with natbib.
+\bibliographystyle{plainnat}
 
 % Provide support for the control entries of IEEEtran.bst V1.00 and later.
 \def\bstctlcite#1{\@bsphack

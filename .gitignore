@@ -41,6 +41,9 @@ Logos/KITlogo_Frabe_english.png
 # PyCharm temp files
 .idea/
 
+# Kile temp files
+.kile/
+
 cmake/
 
 .directory
