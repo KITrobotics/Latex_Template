@@ -3,7 +3,16 @@
 \label{sec:how-to-use}
 %% ==============================
 
-As an useful aid in all scientific work following book is recommended: \cite{deininger1992studienarbeiten}
+\textbf{IMPORTANT:} This chapter will disappear when you add final parameter on the document. See section \ref{ssec:finalizing_the_document}.
+
+\subsection{Getting Started}
+Initially you \textbf{should only edit} the \texttt{My\_document\_info.tex} with important data regarding your work.
+
+Add \textbf{content} in files in \texttt{Content} folder.
+
+Add \textbf{bibliography} in the file \texttt{Bibliography/my\_thesis\_bibliography.bib} or just add a file from your supervisior in the \texttt{Bibliography} folder and reference it in the \texttt{\textbackslash mybibliographyfiles} command in the \texttt{My\_document\_info.tex} file.
+
+As an useful aid in all scientific work following book is recommended: \cite{deininger2005studien}.
 
 
 \subsection{Inline lists}
@@ -65,13 +74,96 @@ Please use \texttt{siunitx} package for this. See:  \url{https://ctan.org/pkg/si
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\columnwidth]{IPRLogo_en}
-    \caption{Figures have caption under. If you use figures from other work, do not forget to reference them \cite{deininger1992studienarbeiten}.}
+    \caption{Figures have caption under. If you use figures from other work, do not forget to reference them \cite{deininger2005studien}.}
     \label{fig:figure_caption}
 \end{figure}
 
 \subsection{Citation}
 
-Multiple citation do like this \cite{deininger1992studienarbeiten, deininger1992studienarbeiten}
+\subsubsection{Multiple citations}
+Use multiple citation like this:
+{\small
+\begin{verbatim}
+\cite{deininger2005studien, deininger2005studien}
+\end{verbatim}
+}
+rendered as ``\cite{deininger2005studien, deininger2005studien}''.
+
+
+\subsubsection{More powerfull cite commands: \texttt{\textbackslash citet} and \texttt{\textbackslash citep}}
+For comprehensive description please check \href{http://merkel.texture.rocks/Latex/natbib.php}{\textit{the natbib documentation}}.
+
+Rather than using the awkward construction\footnote{The example is from the template for the conference \href{http://www.roboticsconference.org/information/authorinfo/}{\textit{Robotic Science and Systems}}.}
+{\small
+\begin{verbatim}
+\cite{deininger2005studien} describes...
+\end{verbatim}
+}
+\noindent
+rendered as ``\cite{deininger2005studien} demonstrated...,'' or the inconvenient
+{\small
+\begin{verbatim}
+Deininger \cite{deininger2005studien} describes...
+\end{verbatim}
+}
+\noindent
+rendered as ``Deininger \cite{deininger2005studien} demonstrated...'', one can write
+{\small
+\begin{verbatim}
+\citet{deininger2005studien} describes...
+\end{verbatim}
+}
+\noindent
+which renders as ``\citet{deininger2005studien} demonstrated...'' and is
+both easy to write and much easier to read.
+
+
+\textbf{Citing specific chapter}:
+
+\citet[sec. III]{Kroger2008MultiSensor}
+
+\citep[sec. III]{Kroger2008MultiSensor}
+
+For more examples check \href{http://merkel.texture.rocks/Latex/natbib.php}{\textit{the natbib documentation}}.
+
+\subsection{Using Hyperlinks}
+Please use the ability of PDF viewers to interpret hyperlinks\footnote{The example is from the template for the conference \href{http://www.roboticsconference.org/information/authorinfo/}{\textit{Robotic Science and Systems}}.}, specifically to allow each reference in the bibliography to be a
+link to an online version of the reference.
+As an example, if you were to cite ``Passive Dynamic Walking''
+\cite{McGeer01041990}, the entry in the bibtex would read:
+
+{\tiny
+\begin{verbatim}
+@article{McGeer01041990,
+  author = {McGeer, Tad},
+  title = {\href{http://ijr.sagepub.com/content/9/2/62.abstract}{Passive Dynamic Walking}},
+  volume = {9},
+  number = {2},
+  pages = {62-82},
+  year = {1990},
+  doi = {10.1177/027836499000900206},
+  URL = {http://ijr.sagepub.com/content/9/2/62.abstract},
+  eprint = {http://ijr.sagepub.com/content/9/2/62.full.pdf+html},
+  journal = {The International Journal of Robotics Research}
+}
+\end{verbatim}
+}
+\noindent
+and the entry in the compiled PDF would look like:
+
+\def\tmplabel#1{[#1]}
+
+\begin{enumerate}
+\item[\tmplabel{1}] Tad McGeer. \href{http://ijr.sagepub.com/content/9/2/62.abstract}{Passive Dynamic
+Walking}. {\em The International Journal of Robotics Research}, 9(2):62--82,
+1990.
+\end{enumerate}
+%
+where the title of the article is a link that takes you to the article on IJRR's website.
+
+
+Also use this for adding links into text as done in the \footnotemark[2]. For more information see documentation on \href{https://de.wikibooks.org/wiki/LaTeX-W%C3%B6rterbuch:_hyperref}{wikibooks}. The \texttt{hyperref} package is already configured for this document in \texttt{KIT\_document\_setup.tex} file.
+
 
 \subsection{Equations}
 Use numbered equations:
@@ -87,4 +179,5 @@ Use command \texttt{\textbackslash comment\{\}} for inline comments.
 Use command \texttt{\textbackslash afterReview\{\}} for marking text parts as \afterReview{changed}.
 
 \subsection{Finalizing the Document}
+\label{ssec:finalizing_the_document}
 Please check here: \url{https://github.com/KITrobotics/Latex_Template/blob/master/README.md#finalizing-document}
