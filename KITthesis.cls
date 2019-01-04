@@ -153,11 +153,17 @@
 %% -------------------------------
 %% |      Style of captions      |
 %% -------------------------------
+% Chapter should be section in seminars and tech reports
 \ifKITthesis@seminar
   \newcommand{\chapter}{\section}
 \fi
 \ifKITthesis@techreport
   \newcommand{\chapter}{\section}
+\fi
+% Part is only enables if phd thesis
+\ifKITthesis@phd
+\else
+  \renewcommand{\part}[1]{}
 \fi
 %% --- End of captions style ---
 
