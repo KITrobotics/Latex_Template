@@ -95,7 +95,7 @@
 %% -----------------------
 %% | Headers and footers |
 %% -----------------------
-\RequirePackage[automark,headsepline]{scrpage2}
+\RequirePackage[automark,headsepline]{scrlayer-scrpage}
 
 \clubpenalty=10000 %prevent orphans
 \widowpenalty=10000 %prvent widows
@@ -435,6 +435,7 @@
 	\end{minipage}
 \fi
   }
+  \pagenumbering{roman}
 }
 
 \uppertitleback{\theinstitute \\ \theinstitutefaculty \\ \iflanguage{ngerman}{Karlsruher Institut f\"ur Technologie}{Karlsruhe Institute of Technology}\\ \theinstituteaddress \\ \theinstitutecity }
@@ -567,6 +568,11 @@
   }
 \fi
 
+\newcommand{\includeglossaries}{}
+\renewcommand{\includeglossaries}{
+    \glsaddall
+    \printglossaries %\addcontentsline{toc}{chapter}{\listfigurename}
+}
 \newcommand{\inculdelistoffigures}{}
 \renewcommand{\inculdelistoffigures}{
     \listoffigures \addcontentsline{toc}{chapter}{\listfigurename}

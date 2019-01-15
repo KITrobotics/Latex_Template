@@ -36,17 +36,66 @@ My robot can:
 
 \subsection{Todos}
 
-\dots
+Todo dommand can be used in multiple form and paramters set. You can set todos on the right side with commands:
+{\small
+\begin{verbatim}
 \todo{Rewrite this section}
 \todo[color=green]{Stuff}
+\end{verbatim}
+} which render as:
+\todo{Rewrite this section}
+\todo[color=green]{Stuff}
+
 % \todo[due=2017-08-18]{Stuff}
 % \todo[done]{Stuff}
+You can also create inline todos with command:
+{\small
+\begin{verbatim}
+\todo[inline]{Rewrite this section}
+\todo[inline,color=green]{Rewrite this section}
+\todoin{Stuff}
+\end{verbatim}
+} which rendrs as:
+\todo[inline]{Rewrite this section}
+\todo[inline,color=green]{Rewrite this section}
+\todoin{Stuff}
+
+One can also use command for figure placeholder with command:
+{\small
+\begin{verbatim}
+ \missingfigure{Please add some figures}
+\end{verbatim}
+} which renders as:
+\missingfigure{Please add some figures}
+
+
+\subsection{Glossaries and Acronyms}
+Please use \texttt{glossaries} package for this. See \href{https://en.wikibooks.org/wiki/LaTeX/Glossary}{\textit{documentation}}.
+
+Example (Acronym):
+{\small
+\begin{verbatim}
+\newacronym{ipr}{IAR-IPR}{Institute for Anthropomatics and Robotics - Intelligent Process Control and Robotics}
+\end{verbatim}
+} \newacronym{ipr}{IAR-IPR}{Institute for Anthropomatics and Robotics - Intelligent Process Control and Robotics}
+is used by
+{\small
+\begin{verbatim}
+\gls{ipr}
+\end{verbatim}
+}
+rendering as ``\gls{ipr}'', on the first use and as ``\gls{ipr}'' on every following use. For further feature see \href{https://en.wikibooks.org/wiki/LaTeX/Glossary}{\textit{documentation}}.
+
+Please keep in mind that one has to call \href{https://www.dickimaw-books.com/cgi-bin/faq.cgi?action=view&categorylabel=glossaries#noglossary}{\textit{external commands}} for glossaries to work.
+
 
 \subsection{Nomenclature}
-Use following command:
+For more details see \href{https://tex.stackexchange.com/questions/27824/using-package-nomencl}{\textit{example}}.
 
+Use following command:
 \textbackslash nomenclature\{IAR-IPR\}\{Institute for Anthropomatics and Robotics (IAR) - Intelligent Process Control and Robotics (IPR)\}
 \nomenclature{IAR-IPR}{Institute for Anthropomatics and Robotics (IAR) - Intelligent Process Control and Robotics (IPR)}
+
 
 \subsection{SI Units}
 Please use \texttt{siunitx} package for this. See:  \url{https://ctan.org/pkg/siunitx}
@@ -69,6 +118,8 @@ Please use \texttt{siunitx} package for this. See:  \url{https://ctan.org/pkg/si
  \end{tabular}
  }
 \end{table}
+
+Use \texttt{\textbackslash longtable} for tables over multiple pages. See \href{https://de.wikibooks.org/wiki/LaTeX-W%C3%B6rterbuch:_longtable_(Umgebung)}{documentation}.
 
 \subsection{Figures}
 \begin{figure}[H]

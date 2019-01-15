@@ -16,9 +16,17 @@ Logos/KITlogo_Frabe_english.png
 *~[0-9]
 
 # Latex output files
+*.acn
+*.acr
+*.alg
 *.aux
 *.blg
 *.bbl
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.ist
 *.log
 *.out
 *.lot
