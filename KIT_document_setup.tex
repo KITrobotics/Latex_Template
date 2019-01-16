@@ -45,6 +45,7 @@
 \usepackage{colortbl}
 \usepackage{multicol}
 \usepackage{multirow}
+\usepackage{longtable}
 
 \usepackage{rotating}
 \usepackage{hhline}
@@ -73,10 +74,13 @@ framexleftmargin=20pt
 \captionsetup[lstlisting]{format=mylst,labelfont=bf,singlelinecheck=off,labelsep=space}
 
 
-%% -------------------
-%% | Nomenclature    |
-%% -------------------
+%% ------------------------------------------
+%% | Glossary, Acronyms and Nomenclature    |
+%% ------------------------------------------
+\usepackage[acronym,toc]{glossaries}
 \usepackage{nomencl}
+
+\makeglossaries
 
 %% --------------
 %% | Margins    |
@@ -114,6 +118,15 @@ framexleftmargin=20pt
 \fi
 
 \usepackage{blindtext}
+
+% My Todo commands
+\newcommand{\todoin}[1]{\todo[inline]{#1}}
+\newcommand{\todoBetter}[1]{\todo[color=blue]{#1}}
+\newcommand{\todoBetterin}[1]{\todo[color=blue,inline]{#1}}
+\newcommand{\todoAdd}[1]{\todo[color=green]{#1}}
+\newcommand{\todoAddin}[1]{\todo[color=green,inline]{#1}}
+\newcommand{\todoCopied}[1]{\todo[color=yellow]{This is copied and needs to bo reworded: #1}}
+\newcommand{\todoCopiedin}[1]{\todo[color=yellow,inline]{This is copied and needs to bo reworded:} {\color{yellow}#1}}
 
 %% --- End of Packages ---
 
@@ -178,3 +191,4 @@ framexleftmargin=20pt
 \fi
 
 %% --- End of Declarations ---
+
