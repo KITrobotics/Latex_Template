@@ -36,7 +36,7 @@ My robot can:
 
 \subsection{Todos}
 
-Todo dommand can be used in multiple form and paramters set. You can set todos on the right side with commands:
+Todo command can be used in multiple form and paramters set. You can set todos on the right side with commands:
 {\small
 \begin{verbatim}
 \todo{Rewrite this section}
@@ -46,8 +46,11 @@ Todo dommand can be used in multiple form and paramters set. You can set todos o
 \todo{Rewrite this section}
 \todo[color=green]{Stuff}
 
+
+
 % \todo[due=2017-08-18]{Stuff}
 % \todo[done]{Stuff}
+
 You can also create inline todos with command:
 {\small
 \begin{verbatim}
@@ -67,6 +70,65 @@ One can also use command for figure placeholder with command:
 \end{verbatim}
 } which renders as:
 \missingfigure{Please add some figures}
+
+
+\subsubsection{User defined version of ToDos for easier usage}
+
+\paragraph{Short for inline}
+\begin{verbatim}
+ \todoin{This I have to do}
+\end{verbatim}
+\todoin{This I have to do}
+
+\paragraph{Remember to rewrite something better}
+\begin{verbatim}
+ \todoBetter{This I have to do}
+\end{verbatim}
+\todoBetter{This I have to do}
+\begin{verbatim}
+ \todoBetterin{This I have to do}
+\end{verbatim}
+\todoBetterin{This I have to do}
+
+\paragraph{Remember to add some stuff later}
+\begin{verbatim}
+ \todoAdd{This I have to do}
+\end{verbatim}
+\todoAdd{This I have to do}
+\begin{verbatim}
+ \todoAddin{This I have to do}
+\end{verbatim}
+\todoAddin{This I have to do}
+
+\paragraph{Remember to remove some copy-pasted text}
+\begin{verbatim}
+ \todoCopied{This I have to do}
+\end{verbatim}
+\todoCopied{This I have to do}
+\begin{verbatim}
+ \todoCopiedin{This I have to do}
+\end{verbatim}
+\todoCopiedin{This I have to do}
+
+\paragraph{Remember that something is important to consider in the future}
+\begin{verbatim}
+ \todoImportant{This I have to do}
+\end{verbatim}
+\todoImportant{This I have to do}
+\begin{verbatim}
+ \todoImportantin{This I have to do}
+\end{verbatim}
+\todoImportantin{This I have to do}
+
+\paragraph{Remember that something need to be checked}
+\begin{verbatim}
+ \todoCheckThis{This I have to do}
+\end{verbatim}
+\todoCheckThis{This I have to do}
+\begin{verbatim}
+ \todoCheckThisin{This I have to do}
+\end{verbatim}
+\todoCheckThisin{This I have to do}
 
 
 \subsection{Glossaries and Acronyms}
@@ -129,7 +191,36 @@ Use \texttt{\textbackslash longtable} for tables over multiple pages. See \href{
     \label{fig:figure_caption}
 \end{figure}
 
+\subsection{Subfigures}
+%For more explanation see \href{https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Subfloats}{Wikibooks}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{Logos/KIT-Departments/IPRLogo_en}
+        \caption{First logo}
+        \label{fig:logo1}
+    \end{subfigure}
+    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+      %(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{Logos/KIT-Departments/IPRLogo_en}
+        \caption{Second logo}
+        \label{fig:logo2}
+    \end{subfigure}
+    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+    %(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{Logos/KIT-Departments/IPRLogo_en}
+        \caption{Third logo}
+        \label{fig:logo3}
+    \end{subfigure}
+    \caption{Pictures of Logos}\label{fig:logos}
+\end{figure}
+
+
 \subsection{Citation}
+
+\todoin{Add citet und citep}
 
 \subsubsection{Multiple citations}
 Use multiple citation like this:

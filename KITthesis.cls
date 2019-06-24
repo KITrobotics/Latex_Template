@@ -568,11 +568,23 @@
   }
 \fi
 
+\newcommand{\includeglossary}{}
+\renewcommand{\includeglossary}{
+    \glsaddall
+    \printglossary %\addcontentsline{toc}{chapter}{\listfigurename}
+}
+\newcommand{\includeacronyms}{}
+\renewcommand{\includeacronyms}{
+    \glsaddall
+    \printacronyms %\addcontentsline{toc}{chapter}{\listfigurename}
+}
+% TODO: Check this if its needed in the future...
 \newcommand{\includeglossaries}{}
 \renewcommand{\includeglossaries}{
     \glsaddall
     \printglossaries %\addcontentsline{toc}{chapter}{\listfigurename}
 }
+%%%
 \newcommand{\inculdelistoffigures}{}
 \renewcommand{\inculdelistoffigures}{
     \listoffigures \addcontentsline{toc}{chapter}{\listfigurename}
@@ -647,6 +659,7 @@
   \renewcommand{\addmybibentry}{
     \newpage
     \thispagestyle{empty}
+    \section*{\iflanguage{ngerman}{BibTex Eintrag für dieser Arbeit}{BibTex Entry of this Thesis}}
 %     Referencing this work: \\ \\
     @mastersthesis\{\theauthor\_\theeditend, 	\\
 	\tab author = \{\theauthor\},		\\
