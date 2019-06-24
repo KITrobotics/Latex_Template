@@ -11,12 +11,6 @@
 % Linux Libertine in math mode
 % \RequirePackage[libertine]{newtxmath}
 
-%% ---------------------------
-%% | References in PDF       |
-%% ---------------------------
-\usepackage[hyphens]{url}
-\usepackage[breaklinks,colorlinks=true,pdftex,pageanchor=false]{hyperref}
-
 %% --------------
 %% | Packages   |
 %% --------------
@@ -119,14 +113,30 @@ framexleftmargin=20pt
 
 \usepackage{blindtext}
 
+%% ---------------------------
+%% | References in PDF       |
+%% ---------------------------
+% Hyperref should be the last package loaded
+\usepackage[hyphens]{url}
+\usepackage[breaklinks,colorlinks=true,pdftex,pageanchor=false]{hyperref}
+
+
 % My Todo commands
 \newcommand{\todoin}[1]{\todo[inline]{#1}}
 \newcommand{\todoBetter}[1]{\todo[color=blue]{#1}}
 \newcommand{\todoBetterin}[1]{\todo[color=blue,inline]{#1}}
 \newcommand{\todoAdd}[1]{\todo[color=green]{#1}}
 \newcommand{\todoAddin}[1]{\todo[color=green,inline]{#1}}
-\newcommand{\todoCopied}[1]{\todo[color=yellow]{This is copied and needs to bo reworded: #1}}
-\newcommand{\todoCopiedin}[1]{\todo[color=yellow,inline]{This is copied and needs to bo reworded:} {\color{yellow}#1}}
+\newcommand{\todoCopied}[1]{\todo[color=olive]{This is copied and needs to be reworded: #1}}
+\newcommand{\todoCopiedin}[1]{\todo[color=olive,inline]{This is copied and needs to be reworded:} {\color{olive}#1}}
+\newcommand{\todoImportant}[1]{\todo[color=red]{IMPORTANT: #1}}
+\newcommand{\todoImportantin}[1]{\todo[color=red,inline]{IMPORTANT: #1}}
+\newcommand{\todoCheckThis}[1]{\todo[color=pink]{CHECK THIS: #1}}
+\newcommand{\todoCheckThisin}[1]{\todo[color=pink,inline]{CHECK THIS: #1}}
+
+
+\newcommand{\kithref}[2]{\href{#1}{\textit{#2}}}
+% \newcommand{\see}[1]{cf.
 
 %% --- End of Packages ---
 
