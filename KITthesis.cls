@@ -515,7 +515,7 @@
       \include{Content/0-Abstract_DE}
       \theAbstract
       \vspace{0.7cm}
-      \textbf{Stickw\"orter:} \emph{\thekeywordsotherlanguge}
+      \textbf{Stichw\"orter:} \emph{\thekeywordsotherlanguge}
     \end{otherlanguage}
   }
   }
