@@ -287,7 +287,7 @@
   }
 \newcommand{\institute}[1]{\renewcommand{\theinstitute}{#1}}
 
-\newcommand{\theinstitutefaculty}{
+\newcommand{\theinstitutefaculty}{%
   \iflanguage{ngerman}
    {KIT-Fakult\"at f\"ur Informatik}
    {KIT Department of Informatics}
@@ -369,7 +369,8 @@
     \else
       \large
     \fi
-    \iflanguage{ngerman}{An der Fakult\"at f\"ur Informatik}{At the Department of Computer Science}
+    \iflanguage{ngerman}{An der}{At the}
+    \theinstitutefaculty
     \\
     \theinstitute
 
