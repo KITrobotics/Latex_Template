@@ -285,7 +285,7 @@
    {Institut f\"ur Anthropomatik und Robotik (IAR) -\\ Intelligente Prozessautomation und Robotik (IPR)}
    {Institute for Anthropomatics and Robotics (IAR) -\\ Intelligent Process Automation and Robotics Lab (IPR)}
   }
-\newcommand{\myinstitute}[1]{\renewcommand{\theinstitute}{#1}}
+\newcommand{\institute}[1]{\renewcommand{\theinstitute}{#1}}
 
 \newcommand{\theinstitutefaculty}{
   \iflanguage{ngerman}
