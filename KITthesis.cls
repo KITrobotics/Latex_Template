@@ -177,6 +177,7 @@
 \noappendicestocpagenum
 
  \renewcommand\appendix{\par
+   \chaptermark{\appendixname}
    \setcounter{section}{0}%
    \setcounter{subsection}{0}%
    \setcounter{figure}{0}%
