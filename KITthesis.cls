@@ -146,7 +146,8 @@
 \setpapersize{A4}
 \setmarginsrb{3cm}{1cm}{3cm}{1cm}{6mm}{7mm}{5mm}{15mm}
 
-\parindent 0cm                     % Do not indent beginning of paragraph
+\usepackage{indentfirst}
+\parindent 20pt                     % Indent beginning of all paragraphs
 \parskip1.5ex plus0.5ex minus0.5ex % Margin between paragraphs
 %% --- End of global Settings ---
 
@@ -177,6 +178,7 @@
 \noappendicestocpagenum
 
  \renewcommand\appendix{\par
+   \chaptermark{\appendixname}
    \setcounter{section}{0}%
    \setcounter{subsection}{0}%
    \setcounter{figure}{0}%
@@ -285,14 +287,14 @@
    {Institut f\"ur Anthropomatik und Robotik (IAR) -\\ Intelligente Prozessautomation und Robotik (IPR)}
    {Institute for Anthropomatics and Robotics (IAR) -\\ Intelligent Process Automation and Robotics Lab (IPR)}
   }
-\newcommand{\myinstitute}[1]{\renewcommand{\theinstitute}{#1}}
+\newcommand{\institute}[1]{\renewcommand{\theinstitute}{#1}}
 
-\newcommand{\theinstitutefaculty}{
+\newcommand{\theKITfaculty}{
   \iflanguage{ngerman}
    {KIT-Fakult\"at f\"ur Informatik}
    {KIT Department of Informatics}
   }
-\newcommand{\KITfaculty}[1]{\renewcommand{\theinstitutefaculty}{#1}}
+\newcommand{\KITfaculty}[1]{\renewcommand{\theKITfaculty}{#1}}
 
 \newcommand{\theinstituteaddress}{
   Engler-Bunte-Ring 8
@@ -369,7 +371,7 @@
     \else
       \large
     \fi
-    \iflanguage{ngerman}{An der Fakult\"at f\"ur Informatik}{At the Department of Computer Science}
+    \iflanguage{ngerman}{An der\theKITfaculty}{At the\theKITfaculty}
     \\
     \theinstitute
 
@@ -406,12 +408,12 @@
       \fi
     \end{tabular}
 
-	\ifKITthesis@declaration \vspace{1cm} \else \vspace{4cm} \fi
+    \ifKITthesis@declaration \vspace{1cm} \else \vspace{3cm} \fi
     \normalsize{
       \ifKITthesis@techreport
-	\today
+        \today
       \else
-	\theeditstart{} -- \theeditend
+        \theeditstart{} -- \theeditend
       \fi
     }
     }
@@ -438,7 +440,7 @@
   \pagenumbering{roman}
 }
 
-\uppertitleback{\theinstitute \\ \theinstitutefaculty \\ \iflanguage{ngerman}{Karlsruher Institut f\"ur Technologie}{Karlsruhe Institute of Technology}\\ \theinstituteaddress \\ \theinstitutecity }
+\uppertitleback{\theinstitute \\ \theKITfaculty \\ \iflanguage{ngerman}{Karlsruher Institut f\"ur Technologie}{Karlsruhe Institute of Technology}\\ \theinstituteaddress \\ \theinstitutecity }
 \ifKITthesis@techreport
 \else
   \lowertitleback{\theauthor \\ \theaddress \\ \thecity \\ \theemail}
@@ -490,7 +492,7 @@
     \renewcommand{\Abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname}\addcontentsline{toc}{chapter}{\abstractname} {\Large\changefont{phv}{b}{n}\centering{\thetitle}\\\vspace{0.7cm}} ##1}}
     \include{Content/0-Abstract_DE}
     \theAbstract
-    \vspace{0.7cm}
+    \vfill
     \textbf{Stichw\"orter:} \emph{\thekeywords}
 
     \begin{otherlanguage}{english}
@@ -498,7 +500,7 @@
       \renewcommand{\Abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname}\addcontentsline{toc}{chapter}{\abstractname} {\Large\changefont{phv}{b}{n}\centering{\thetitleotherlanguage}\\\vspace{0.7cm}} ##1}}
       \include{Content/0-Abstract_EN}
       \theAbstract
-      \vspace{0.7cm}
+      \vfill % works also: %\vskip 0.7cm
       \textbf{Keywords:} \emph{\thekeywordsotherlanguge}
     \end{otherlanguage}
   }{
@@ -507,14 +509,14 @@
     \renewcommand{\Abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname}\addcontentsline{toc}{chapter}{\abstractname} {\Large\changefont{phv}{b}{n}\centering{\thetitle}\\\vspace{0.7cm}} ##1}}
     \include{Content/0-Abstract_EN}
       \theAbstract
-      \vspace{0.7cm}
+      \vfill
       \textbf{Keywords:} \emph{\thekeywords}
     \begin{otherlanguage}{ngerman}
       \renewcommand{\abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname} ##1}}
       \renewcommand{\Abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname}\addcontentsline{toc}{chapter}{\abstractname} {\Large\changefont{phv}{b}{n}\centering{\thetitleotherlanguage}\\\vspace{0.7cm}} ##1}}
       \include{Content/0-Abstract_DE}
       \theAbstract
-      \vspace{0.7cm}
+      \vfill
       \textbf{Stichw\"orter:} \emph{\thekeywordsotherlanguge}
     \end{otherlanguage}
   }
@@ -605,6 +607,7 @@
 \newcommand{\setmainpart}{
   \setcounter{page}{1}
   \pagenumbering{arabic}
+
 }
 
 %% ------------
@@ -680,6 +683,7 @@
 \ifKITthesis@final
 \else
     \renewcommand{\includehowtouse}{
+        \setlength{\parindent}{0pt}
         \renewcommand\thesection{\arabic{chapter}}%
         \include{Content/0-How-to-Use}
     }
