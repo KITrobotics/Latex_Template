@@ -490,7 +490,7 @@
     \renewcommand{\Abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname}\addcontentsline{toc}{chapter}{\abstractname} {\Large\changefont{phv}{b}{n}\centering{\thetitle}\\\vspace{0.7cm}} ##1}}
     \include{Content/0-Abstract_DE}
     \theAbstract
-    \vspace{0.7cm}
+    \\
     \textbf{Stichw\"orter:} \emph{\thekeywords}
 
     \begin{otherlanguage}{english}
@@ -498,7 +498,7 @@
       \renewcommand{\Abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname}\addcontentsline{toc}{chapter}{\abstractname} {\Large\changefont{phv}{b}{n}\centering{\thetitleotherlanguage}\\\vspace{0.7cm}} ##1}}
       \include{Content/0-Abstract_EN}
       \theAbstract
-      \vspace{0.7cm}
+      \\
       \textbf{Keywords:} \emph{\thekeywordsotherlanguge}
     \end{otherlanguage}
   }{
@@ -507,14 +507,14 @@
     \renewcommand{\Abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname}\addcontentsline{toc}{chapter}{\abstractname} {\Large\changefont{phv}{b}{n}\centering{\thetitle}\\\vspace{0.7cm}} ##1}}
     \include{Content/0-Abstract_EN}
       \theAbstract
-      \vspace{0.7cm}
+      \\
       \textbf{Keywords:} \emph{\thekeywords}
     \begin{otherlanguage}{ngerman}
       \renewcommand{\abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname} ##1}}
       \renewcommand{\Abstract}[1]{\renewcommand{\theAbstract}{\chapter*{\abstractname}\addcontentsline{toc}{chapter}{\abstractname} {\Large\changefont{phv}{b}{n}\centering{\thetitleotherlanguage}\\\vspace{0.7cm}} ##1}}
       \include{Content/0-Abstract_DE}
       \theAbstract
-      \vspace{0.7cm}
+      \\
       \textbf{Stichw\"orter:} \emph{\thekeywordsotherlanguge}
     \end{otherlanguage}
   }
