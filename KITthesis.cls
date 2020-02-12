@@ -1,9 +1,12 @@
+%% KITthesis.cls
+%% Copyright 2020 KIT Department of Informatics
+%%
 %% LaTeX2e class for diploma theses
 %% Based on wissdoc.cls by Roland Bless, 1996-2001
 %% bless@telematik.informatik.uni-karlsruhe.de
+%% https://telematics.tm.kit.edu/staff_bless.php
 %%
 %% Adapted by: Timo Rohrberg, 2009
-%% timo.rohrberg@student.kit.edu
 %%
 %% Additions by: Thorsten Haberecht, IPD - Chair Prof. Böhm, 2010
 %% thorsten.haberecht@kit.edu
@@ -11,8 +14,23 @@
 %% Additions of multiple classes: Denis Štogl, IAR-IPR Prof. Hein, 2017
 %% denis.stogl@kit.edu
 %% Some ideas taken from: SDQ-Version by Erik Burger (v1.3, Dezember 2016)
-%%
-%% Version: 0.3 (22.02.2018)
+%
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is M. Y. Name.
+%
+% This work consists of the files pig.dtx and pig.ins
+% and the derived file thesis.tex.
+
 
 
 \NeedsTeXFormat{LaTeX2e}
