@@ -1,5 +1,4 @@
-The LaTeX Project Public License
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+# The LaTeX Project Public License
 
 LPPL Version 1.3c  2008-05-04
 
