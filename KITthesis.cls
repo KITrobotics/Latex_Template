@@ -146,7 +146,8 @@
 \setpapersize{A4}
 \setmarginsrb{3cm}{1cm}{3cm}{1cm}{6mm}{7mm}{5mm}{15mm}
 
-\parindent 0cm                     % Do not indent beginning of paragraph
+\usepackage{indentfirst}
+\parindent 20pt                     % Indent beginning of all paragraphs
 \parskip1.5ex plus0.5ex minus0.5ex % Margin between paragraphs
 %% --- End of global Settings ---
 
@@ -606,6 +607,7 @@
 \newcommand{\setmainpart}{
   \setcounter{page}{1}
   \pagenumbering{arabic}
+
 }
 
 %% ------------
@@ -681,6 +683,7 @@
 \ifKITthesis@final
 \else
     \renewcommand{\includehowtouse}{
+        \setlength{\parindent}{0pt}
         \renewcommand\thesection{\arabic{chapter}}%
         \include{Content/0-How-to-Use}
     }
