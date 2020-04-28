@@ -235,16 +235,17 @@
 % bg shape
 \begin{tikzpicture}[overlay]
 \draw[color=gray]
- 		 (\xone mm, \yone mm)
+     (\xone mm, \yone mm)
   -- (\xtwo mm, \yone mm)
  arc (90:0:\diameter pt)
   -- (\xtwo mm + \diameter pt , \ytwo mm)
-	-- (\xone mm + \diameter pt , \ytwo mm)
+  -- (\xone mm + \diameter pt , \ytwo mm)
  arc (270:180:\diameter pt)
-	-- (\xone mm, \yone mm);
+  -- (\xone mm, \yone mm);
 \end{tikzpicture}
 
 % KIT logo german/english
+\ifKITthesis@declaration \vspace*{-10pt} \else ~ \fi
 \iflanguage{ngerman}
 {\includegraphics[height=1.8cm]{Logos/kitlogo_de_cmyk}}
 {\includegraphics[height=1.8cm]{Logos/kitlogo_en_cmyk}}
@@ -393,7 +394,7 @@
     \\
     \theinstitute
 
-    \ifKITthesis@declaration \vspace*{1cm} \else \vspace*{2cm} \fi
+    \ifKITthesis@declaration \vspace*{0.8cm} \else \vspace*{2cm} \fi
 
     \begin{tabular}{l c l}
       \ifKITthesis@seminar
@@ -447,10 +448,10 @@
 
 	\vspace{0.4cm}
 	\textbf{Karlsruhe, \today}
-	\vspace{1.2cm}
+	\vspace{0.8cm}
 
-	\dotfill\hspace*{8.0cm}\\
-	\hspace*{2.0cm}(\textbf{\theauthor}) %center name with hspace
+	\hfill\hspace*{5.0cm}\dotfill\\
+	\hspace*{12.0cm}(\textbf{\theauthor}) %center name with hspace
 	}
 	\end{minipage}
 \fi
