@@ -591,18 +591,15 @@
 
 \newcommand{\includeglossary}{}
 \renewcommand{\includeglossary}{
-    \glsaddall
     \printglossary %\addcontentsline{toc}{chapter}{\listfigurename}
 }
 \newcommand{\includeacronyms}{}
 \renewcommand{\includeacronyms}{
-    \glsaddall
     \printacronyms %\addcontentsline{toc}{chapter}{\listfigurename}
 }
 % TODO: Check this if its needed in the future...
 \newcommand{\includeglossaries}{}
 \renewcommand{\includeglossaries}{
-    \glsaddall
     \printglossaries %\addcontentsline{toc}{chapter}{\listfigurename}
 }
 %%%
